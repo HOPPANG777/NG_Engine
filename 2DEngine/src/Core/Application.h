@@ -4,9 +4,9 @@
 #include "Time.h"
 
 // Graphics
-#include "01_Graphics/DX/D3D11Device.h"
-#include "01_Graphics/DX/SwapChain.h"
-#include "01_Graphics/DX/RenderTarget.h"
+#include "Graphics/DX/D3D11Device.h"
+#include "Graphics/DX/SwapChain.h"
+#include "Graphics/DX/RenderTarget.h"
 
 namespace NG_Engine
 {
