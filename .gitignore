@@ -6,6 +6,7 @@
 # Ignore vcpkg_installed directories in specific projects
 vcpkg_installed/
 
+
 # Ignore _Build files and directories
 _Build/
 
