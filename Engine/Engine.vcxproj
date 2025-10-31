@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{178b3f5f-f427-4b67-b424-5662a3eef817}</ProjectGuid>
+    <RootNamespace>MyEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)_Build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)_Build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)_Build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)_Build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)_Build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)_Build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)_Build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)_Build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>./;../;include/;src/;</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Include.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>./;../;include/;src/;</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Include.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>./;../;include/;src/;</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Include.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>./;../;include/;src/;</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Include.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="src\03_Audio\AudioDevice.h" />
+    <ClInclude Include="src\03_Audio\MusicStream.h" />
+    <ClInclude Include="src\03_Audio\Sound.h" />
+    <ClInclude Include="src\03_Audio\AudioEngine.h" />
+    <ClInclude Include="EngineAPI.h" />
+    <ClInclude Include="src\01_Graphics\Renderer\2D\SpriteBatch2D.h" />
+    <ClInclude Include="src\02_Input\Keyboard.h" />
+    <ClInclude Include="src\02_Input\Mouse.h" />
+    <ClInclude Include="src\00_Core\FileSystem.h" />
+    <ClInclude Include="src\01_Graphics\DX\D3D11Device.h" />
+    <ClInclude Include="src\01_Graphics\DX\RenderTarget.h" />
+    <ClInclude Include="src\00_Core\Application.h" />
+    <ClInclude Include="include\ReadData.h" />
+    <ClInclude Include="include\targetver.h" />
+    <ClInclude Include="src\00_Core\Platform.h" />
+    <ClInclude Include="src\01_Graphics\Renderer\RenderStates\Sampler.h" />
+    <ClInclude Include="src\01_Graphics\Renderer\RenderStates\DepthStencil.h" />
+    <ClInclude Include="src\01_Graphics\Renderer\RenderStates\Blend.h" />
+    <ClInclude Include="src\01_Graphics\Renderer\RenderStates\Rasterizer.h" />
+    <ClInclude Include="src\01_Graphics\Renderer\Shaders\PixelShader.h" />
+    <ClInclude Include="src\01_Graphics\Renderer\Shaders\IShader.h" />
+    <ClInclude Include="src\01_Graphics\Renderer\RenderResources\GlobalBuffer.h" />
+    <ClInclude Include="src\01_Graphics\Renderer\RenderResources\ConstantBuffer.h" />
+    <ClInclude Include="include\Common.h" />
+    <ClInclude Include="include\Include.h" />
+    <ClInclude Include="src\01_Graphics\Renderer\IA\InputLayout.h" />
+    <ClInclude Include="src\01_Graphics\Renderer\IA\IndexBuffer.h" />
+    <ClInclude Include="src\01_Graphics\Renderer\IA\VertexBuffer.h" />
+    <ClInclude Include="src\01_Graphics\Renderer\RenderResources\Texture2D.h" />
+    <ClInclude Include="src\01_Graphics\Renderer\RenderResources\VertexType.h" />
+    <ClInclude Include="src\01_Graphics\Renderer\Shaders\VertexShader.h" />
+    <ClInclude Include="src\00_Core\Time.h" />
+    <ClInclude Include="src\01_Graphics\DX\SwapChain.h" />
+    <ClInclude Include="src\04_Resource\AssetManager.h" />
+    <ClInclude Include="src\04_Resource\AudioManager.h" />
+    <ClInclude Include="src\04_Resource\DataBlob.h" />
+    <ClInclude Include="src\04_Resource\FontManager.h" />
+    <ClInclude Include="src\04_Resource\PackFileReader.h" />
+    <ClInclude Include="src\04_Resource\ResourceHandle.h" />
+    <ClInclude Include="src\04_Resource\ResourceID.h" />
+    <ClInclude Include="src\04_Resource\ResourcePath.h" />
+    <ClInclude Include="src\04_Resource\ResourceWatcher.h" />
+    <ClInclude Include="src\04_Resource\ShaderCache.h" />
+    <ClInclude Include="src\04_Resource\ShaderCompiler.h" />
+    <ClInclude Include="src\04_Resource\TextureLoader.h" />
+    <ClInclude Include="src\04_Resource\TextureManager.h" />
+    <ClInclude Include="src\05_Scene\Component.h" />
+    <ClInclude Include="src\05_Scene\ComponentStorage.h" />
+    <ClInclude Include="src\05_Scene\Entity.h" />
+    <ClInclude Include="src\05_Scene\Registry.h" />
+    <ClInclude Include="src\05_Scene\Scene.h" />
+    <ClInclude Include="src\05_Scene\Tag.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\03_Audio\AudioDevice.cpp" />
+    <ClCompile Include="src\03_Audio\MusicStream.cpp" />
+    <ClCompile Include="src\03_Audio\Sound.cpp" />
+    <ClCompile Include="src\03_Audio\AudioEngine.cpp" />
+    <ClCompile Include="src\01_Graphics\Renderer\2D\SpriteBatch2D.cpp" />
+    <ClCompile Include="src\02_Input\Keyboard.cpp" />
+    <ClCompile Include="src\02_Input\Mouse.cpp" />
+    <ClCompile Include="src\00_Core\FileSystem.cpp" />
+    <ClCompile Include="src\01_Graphics\DX\D3D11Device.cpp" />
+    <ClCompile Include="src\01_Graphics\DX\RenderTarget.cpp" />
+    <ClCompile Include="src\00_Core\Application.cpp" />
+    <ClCompile Include="include\Include.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\00_Core\Platform.cpp" />
+    <ClCompile Include="src\01_Graphics\Renderer\RenderStates\Sampler.cpp" />
+    <ClCompile Include="src\01_Graphics\Renderer\RenderStates\DepthStencil.cpp" />
+    <ClCompile Include="src\01_Graphics\Renderer\RenderStates\Blend.cpp" />
+    <ClCompile Include="src\01_Graphics\Renderer\RenderStates\Rasterizer.cpp" />
+    <ClCompile Include="src\01_Graphics\Renderer\Shaders\PixelShader.cpp" />
+    <ClCompile Include="src\01_Graphics\Renderer\Shaders\IShader.cpp" />
+    <ClCompile Include="src\01_Graphics\Renderer\RenderResources\GlobalBuffer.cpp" />
+    <ClCompile Include="src\01_Graphics\Renderer\RenderResources\ConstantBuffer.cpp" />
+    <ClCompile Include="src\01_Graphics\Renderer\IA\InputLayout.cpp" />
+    <ClCompile Include="src\01_Graphics\Renderer\IA\IndexBuffer.cpp" />
+    <ClCompile Include="src\01_Graphics\Renderer\IA\VertexBuffer.cpp" />
+    <ClCompile Include="src\01_Graphics\Renderer\RenderResources\Texture2D.cpp" />
+    <ClCompile Include="src\01_Graphics\Renderer\RenderResources\VertexType.cpp" />
+    <ClCompile Include="src\01_Graphics\Renderer\Shaders\VertexShader.cpp" />
+    <ClCompile Include="src\00_Core\Time.cpp" />
+    <ClCompile Include="src\01_Graphics\DX\SwapChain.cpp" />
+    <ClCompile Include="src\04_Resource\AssetManager.cpp" />
+    <ClCompile Include="src\04_Resource\AudioManager.cpp" />
+    <ClCompile Include="src\04_Resource\FontManager.cpp" />
+    <ClCompile Include="src\04_Resource\PackFileReader.cpp" />
+    <ClCompile Include="src\04_Resource\ResourceWatcher.cpp" />
+    <ClCompile Include="src\04_Resource\ShaderCache.cpp" />
+    <ClCompile Include="src\04_Resource\ShaderCompiler.cpp" />
+    <ClCompile Include="src\04_Resource\TextureLoader.cpp" />
+    <ClCompile Include="src\04_Resource\TextureManager.cpp" />
+    <ClCompile Include="src\05_Scene\Registry.cpp" />
+    <ClCompile Include="src\05_Scene\Scene.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
