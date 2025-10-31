@@ -4,7 +4,7 @@
 
 using Microsoft::WRL::ComPtr;
 using namespace NG_Engine;
-using namespace common;
+using namespace Common;
 
 static ComPtr<IDXGIFactory> CreateFactory()
 {
@@ -16,7 +16,7 @@ static ComPtr<IDXGIFactory> CreateFactory()
 
 bool SwapChain::Create(const D3D11Device& device, const SwapChainDesc& desc)
 {
-    CHECK(device.GetDevice() && device.GetContext());
+    CHECK(device.GetDevice() && device.GetDC());
     CHECK(desc.hwnd != nullptr);
 
     m_hwnd = desc.hwnd;
@@ -61,7 +61,9 @@ bool SwapChain::Create(const D3D11Device& device, const SwapChainDesc& desc)
 void SwapChain::Destroy()
 {
     if (m_swapChain)
+    {
         m_swapChain->SetFullscreenState(FALSE, nullptr);
+    }
     m_swapChain.Reset();
 }
 

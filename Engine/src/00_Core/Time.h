@@ -70,7 +70,7 @@ namespace NG_Engine
 		float m_scaleDeltaTime = 0.0f;
 		float m_timeScale = 1.0f;		// 타임스케일
 	};
-}
+} // namespace NG_Engine
 
 
 

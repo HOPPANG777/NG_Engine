@@ -5,7 +5,7 @@
 
 using Microsoft::WRL::ComPtr;
 using namespace NG_Engine;
-using namespace common;
+using namespace Common;
 
 bool RenderTarget::CreateFromSwapChain(const D3D11Device& device, const SwapChain& swap)
 {
@@ -47,8 +47,8 @@ void RenderTarget::Destroy()
 
 void RenderTarget::Bind(const D3D11Device& device)
 {
-    CHECK(device.GetContext() && m_rtv);
-    auto* ctx = device.GetContext();
+    CHECK(device.GetDC() && m_rtv);
+    auto* ctx = device.GetDC();
     ctx->RSSetViewports(1, &m_viewport);
     ID3D11RenderTargetView* rtv = m_rtv.Get();
     ctx->OMSetRenderTargets(1, &rtv, nullptr);
@@ -58,5 +58,5 @@ void RenderTarget::Clear(const D3D11Device& device, const float color[4])
 {
     CHECK(device.GetContext());
     if (m_rtv)
-        device.GetContext()->ClearRenderTargetView(m_rtv.Get(), color);
+        device.GetDC()->ClearRenderTargetView(m_rtv.Get(), color);
 }

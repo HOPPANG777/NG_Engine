@@ -46,7 +46,7 @@ namespace NG_Engine
 		bool			g_minimized = false;
 
 	};
-}
+} // namespace NG_Engine
 
 
 

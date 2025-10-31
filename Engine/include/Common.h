@@ -8,7 +8,7 @@
 #include <type_traits>
 #include <limits>
 
-namespace common
+namespace Common
 {
     // ------------------ 기본형 타입 별칭 ------------------
     using i8 = int8_t;
@@ -71,7 +71,7 @@ namespace common
     // 사용 예: CHECK(ptr != nullptr);
 #ifdef _DEBUG
 #define CHECK(expr) \
-    do { if (!(expr)) ::common::detail::check_fail(#expr, __FILE__, __LINE__); } while (0)
+    do { if (!(expr)) ::Common::detail::check_fail(#expr, __FILE__, __LINE__); } while (0)
 #else
 #define CHECK(expr) ((void)0)
 #endif

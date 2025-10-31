@@ -3,7 +3,7 @@
 
 using Microsoft::WRL::ComPtr;
 using namespace NG_Engine;
-using namespace common;
+using namespace Common;
 
 bool D3D11Device::Create()
 {
