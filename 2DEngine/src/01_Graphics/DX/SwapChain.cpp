@@ -14,9 +14,9 @@ static ComPtr<IDXGIFactory> CreateFactory()
     return f;
 }
 
-bool SwapChain::Create(const D3D11Device& device, const SwapChainDesc& desc)
+bool SwapChain::Create(DXDevice dx, const SwapChainDesc& desc)
 {
-    CHECK(device.GetDevice() && device.GetDC());
+    CHECK(dx.device && dx.context);
     CHECK(desc.hwnd != nullptr);
 
     m_hwnd = desc.hwnd;
@@ -45,14 +45,14 @@ bool SwapChain::Create(const D3D11Device& device, const SwapChainDesc& desc)
     ComPtr<IDXGIAdapter> adapter;
     ComPtr<IDXGIFactory> factory;
 
-    HRESULT hr = device.GetDevice()->QueryInterface(__uuidof(IDXGIDevice), (void**)dxgiDevice.GetAddressOf());
+    HRESULT hr = dx.device->QueryInterface(__uuidof(IDXGIDevice), (void**)dxgiDevice.GetAddressOf());
     CHECK(SUCCEEDED(hr));
     hr = dxgiDevice->GetAdapter(adapter.GetAddressOf());
     CHECK(SUCCEEDED(hr));
     hr = adapter->GetParent(__uuidof(IDXGIFactory), (void**)factory.GetAddressOf());
     CHECK(SUCCEEDED(hr));
 
-    hr = factory->CreateSwapChain(device.GetDevice(), &scd, m_swapChain.ReleaseAndGetAddressOf());
+    hr = factory->CreateSwapChain(dx.device, &scd, m_swapChain.ReleaseAndGetAddressOf());
     CHECK(SUCCEEDED(hr));
 
     return SUCCEEDED(hr);

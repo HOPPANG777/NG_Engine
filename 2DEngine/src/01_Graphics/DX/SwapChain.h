@@ -25,7 +25,7 @@ namespace NG_Engine
         SwapChain() = default;
         ~SwapChain() { Destroy(); }
 
-        bool Create(const D3D11Device& device, const SwapChainDesc& desc);
+        bool Create(DXDevice device, const SwapChainDesc& desc);
         void Destroy();
 
         bool Resize(UINT width, UINT height);             // 0은 무시
@@ -35,6 +35,9 @@ namespace NG_Engine
         IDXGISwapChain* Get() const { return m_swapChain.Get(); }
 
     private:
+        ID3D11Device* m_device = nullptr;           // 비소유
+        ID3D11DeviceContext* m_context = nullptr;   // 비소유
+
         Microsoft::WRL::ComPtr<IDXGISwapChain> m_swapChain = nullptr;
 
         // 보관용

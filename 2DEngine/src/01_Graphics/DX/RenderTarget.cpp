@@ -7,15 +7,15 @@ using Microsoft::WRL::ComPtr;
 using namespace NG_Engine;
 using namespace Common;
 
-bool RenderTarget::CreateFromSwapChain(const D3D11Device& device, const SwapChain& swap)
+bool RenderTarget::CreateFromSwapChain(DXDevice dx, const SwapChain& swap)
 {
-    CHECK(device.GetDevice() && swap.Get());
+    CHECK(dx.device && swap.Get());
 
     ComPtr<ID3D11Texture2D> backBuffer;
     HRESULT hr = swap.Get()->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)backBuffer.GetAddressOf());
     CHECK(SUCCEEDED(hr));
 
-    hr = device.GetDevice()->CreateRenderTargetView(backBuffer.Get(), nullptr, m_rtv.ReleaseAndGetAddressOf());
+    hr = dx.device->CreateRenderTargetView(backBuffer.Get(), nullptr, m_rtv.ReleaseAndGetAddressOf());
     CHECK(SUCCEEDED(hr));
 
     DXGI_SWAP_CHAIN_DESC scd{};
@@ -45,18 +45,20 @@ void RenderTarget::Destroy()
     m_rtv.Reset();
 }
 
-void RenderTarget::Bind(const D3D11Device& device)
+void RenderTarget::Bind(DXDevice dx)
 {
-    CHECK(device.GetDC() && m_rtv);
-    auto* ctx = device.GetDC();
+    CHECK(dx.context && m_rtv);
+    auto* ctx = dx.context;
     ctx->RSSetViewports(1, &m_viewport);
     ID3D11RenderTargetView* rtv = m_rtv.Get();
     ctx->OMSetRenderTargets(1, &rtv, nullptr);
 }
 
-void RenderTarget::Clear(const D3D11Device& device, const float color[4])
+void RenderTarget::Clear(DXDevice dx, const float color[4])
 {
-    CHECK(device.GetContext());
+    CHECK(dx.context);
     if (m_rtv)
-        device.GetDC()->ClearRenderTargetView(m_rtv.Get(), color);
+    {
+        dx.context->ClearRenderTargetView(m_rtv.Get(), color);
+    }
 }

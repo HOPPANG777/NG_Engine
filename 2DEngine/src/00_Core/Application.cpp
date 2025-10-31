@@ -20,15 +20,17 @@ bool Application::Initialize(const AppDesc& desc)
 
     if (!g_device.Create()) return false;
 
+    DXDevice dx = g_device.GetDXDevice(g_device);
+
     SwapChainDesc scd{};
     scd.hwnd = g_platform.g_handle;
     scd.width = g_platform.g_width;
     scd.height = g_platform.g_height;
     scd.format = DXGI_FORMAT_R8G8B8A8_UNORM;
     scd.vsync = desc.vsync;
-    if (!g_swapchain.Create(g_device, scd)) return false;
+    if (!g_swapchain.Create(dx, scd)) return false;
 
-    if (!g_backbuffer.CreateFromSwapChain(g_device, g_swapchain)) return false;
+    if (!g_backbuffer.CreateFromSwapChain(dx, g_swapchain)) return false;
 
     g_time.Reset();
     OnInit();
@@ -69,20 +71,24 @@ void Application::OnResize(UINT width, UINT height)
 {
     if (width == 0 || height == 0) return;
 
+    DXDevice dx = g_device.GetDXDevice(g_device);
+
     g_backbuffer.Destroy();
     g_swapchain.Resize(width, height);
-    g_backbuffer.CreateFromSwapChain(g_device, g_swapchain);
+    g_backbuffer.CreateFromSwapChain(dx, g_swapchain);
 }
 
-bool Application::OnMsg(HWND, UINT, WPARAM, LPARAM)
+bool Application::OnMsg(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 {
     return false; // 필요 시 상속 측에서 메시지 소비
 }
 
 void Application::BeginFrame(const float clear[4])
 {
-    g_backbuffer.Bind(g_device);
-    g_backbuffer.Clear(g_device, clear);
+    DXDevice dx = g_device.GetDXDevice(g_device);
+
+    g_backbuffer.Bind(dx);
+    g_backbuffer.Clear(dx, clear);
 }
 
 void Application::EndFrame()

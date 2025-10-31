@@ -44,6 +44,12 @@ namespace Common
         return (a > b ? a - b : b - a) <= eps;
     }
 
+    template<typename T>
+    constexpr T quadratic_bezier(T p0, T p1, T p2, T t)
+    {
+        return p0 * (1.0f - t) * (1.0f - t) + p1 * (2 * (1.0f - t) * t) + p2 * (t * t);
+    }
+
     // ------------------ 범위 검사 ------------------
     template<typename T>
     constexpr bool in_range(T v, T lo, T hi)

@@ -24,6 +24,15 @@ namespace NG_Engine
         ID3D11Device* GetDevice()  const { return m_device.Get(); }
         ID3D11DeviceContext* GetDC() const { return m_context.Get(); }
 
+    public:
+        inline DXDevice GetDXDevice(const D3D11Device& device)
+        {
+            return {
+                device.GetDevice(),
+                device.GetDC()
+            };
+        }
+
     private:
         Microsoft::WRL::ComPtr<ID3D11Device>        m_device = nullptr;
         Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_context = nullptr;

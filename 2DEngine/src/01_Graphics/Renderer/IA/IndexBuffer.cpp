@@ -5,7 +5,7 @@
 using namespace NG_Engine;
 using namespace Common;
 
-void NG_Engine::IndexBuffer::Create(const std::vector<UINT>& indices, const D3D11_USAGE& usage)
+void IndexBuffer::Create(DXDevice dx, const std::vector<UINT>& indices, const D3D11_USAGE& usage)
 {
 	m_stride = sizeof(UINT);
 	m_count = UINT(indices.size());
@@ -33,11 +33,11 @@ void NG_Engine::IndexBuffer::Create(const std::vector<UINT>& indices, const D3D1
 	ZeroMemory(&subData, sizeof(subData));
 	subData.pSysMem = indices.data();
 
-	HRESULT hr = D3D11Device::GetDevice()->CreateBuffer(&desc, &subData, &m_buffer);
+	HRESULT hr = dx.device->CreateBuffer(&desc, &subData, &m_buffer);
 	CHECK(hr);
 }
 
-void NG_Engine::IndexBuffer::SetIA()
+void IndexBuffer::SetIA(DXDevice dx)
 {
-	D3D11Device::GetDC()->IASetIndexBuffer(m_buffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+	dx.context->IASetIndexBuffer(m_buffer.Get(), DXGI_FORMAT_R32_UINT, 0);
 }

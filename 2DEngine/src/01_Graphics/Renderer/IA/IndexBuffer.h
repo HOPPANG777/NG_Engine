@@ -6,13 +6,17 @@
 
 namespace NG_Engine
 {
-	class D3D11Device;
+	struct DXDevice
+	{
+		ID3D11Device* device = nullptr;
+		ID3D11DeviceContext* context = nullptr;
+	};
 
 	class IndexBuffer
 	{
 	public:
-		void Create(const std::vector<UINT>& indices, const D3D11_USAGE& usage = D3D11_USAGE_DEFAULT);
-		void SetIA();
+		void Create(DXDevice dx, const std::vector<UINT>& indices, const D3D11_USAGE& usage = D3D11_USAGE_DEFAULT);
+		void SetIA(DXDevice dx);
 
 	public:
 		ID3D11Buffer* GetResource() const { return m_buffer.Get(); }
