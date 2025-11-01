@@ -1,4 +1,4 @@
-#include "Application.h"
+﻿#include "Application.h"
 #include "IGraphicsEngine.h"
 
 using namespace NG_Engine;

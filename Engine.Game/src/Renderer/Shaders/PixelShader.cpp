@@ -1,4 +1,4 @@
-#include "Renderer/Shaders/PixelShader.h"
+﻿#include "Renderer/Shaders/PixelShader.h"
 #include "Renderer/Shaders/IShader.h"
 #include "Engine.Graphics/include/DX/D3D11Device.h"
 #include "Common.h"
@@ -21,9 +21,9 @@ void PixelShader::Create(Graphics::DXDevice dx, const std::wstring& path, const 
 		m_blob->GetBufferPointer(),
 		m_blob->GetBufferSize(),
 		nullptr,
-		&m_shader
+		m_shader.GetAddressOf()
 	);
-	CHECK(hr);
+	CHECK(SUCCEEDED(hr));
 }
 
 void PixelShader::Clear()

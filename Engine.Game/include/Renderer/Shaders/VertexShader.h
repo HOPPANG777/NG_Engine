@@ -1,10 +1,11 @@
-#pragma once
+ï»¿#pragma once
 
 #include <d3d11.h>
 #include <wrl/client.h>
 #include <string>
 #include <algorithm>
 #include <vector>
+#include "Renderer/Shaders/IShader.h"
 
 namespace NG_Engine
 {
@@ -25,8 +26,8 @@ namespace NG_Engine
 		ID3D11VertexShader* GetResource() const { return m_shader.Get(); }
 
 	private:
-		ID3D11Device* m_device = nullptr;           // ºñ¼ÒÀ¯
-		ID3D11DeviceContext* m_context = nullptr;   // ºñ¼ÒÀ¯
+		ID3D11Device* m_device = nullptr;           // ë¹„ì†Œìœ 
+		ID3D11DeviceContext* m_context = nullptr;   // ë¹„ì†Œìœ 
 
 		Microsoft::WRL::ComPtr<ID3D11VertexShader> m_shader;
 

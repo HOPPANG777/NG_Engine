@@ -1,4 +1,4 @@
-#include "Renderer/RenderStates/Sampler.h"
+﻿#include "Renderer/RenderStates/Sampler.h"
 #include "Common.h"
 #include "Engine.Graphics/include/DX/D3D11Device.h"
 

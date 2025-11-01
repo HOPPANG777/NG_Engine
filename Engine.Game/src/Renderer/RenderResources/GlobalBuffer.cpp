@@ -1,4 +1,4 @@
-#include "Engine.Graphics/include/DX/D3D11Device.h"
+ï»¿#include "Engine.Graphics/include/DX/D3D11Device.h"
 #include "Renderer/RenderResources/GlobalBuffer.h"
 #include "Renderer/RenderResources/ConstantBuffer.h"
 
@@ -39,17 +39,17 @@ void ViewProjectionBuffer::SetProjection(const DirectX::SimpleMath::Matrix& proj
 ColorBuffer::ColorBuffer(Graphics::DXDevice dx)
 	: ConstantBuffer(dx, &m_data, sizeof(m_data))
 {
-	// ±âº» º¯È¯ »ö»óÀº Èò»öÀ¸·Î ¼³Á¤ (Áï, »ö»ó º¯È­ ¾øÀ½)
+	// ê¸°ë³¸ ë³€í™˜ ìƒ‰ìƒì€ í°ìƒ‰ìœ¼ë¡œ ì„¤ì • (ì¦‰, ìƒ‰ìƒ ë³€í™” ì—†ìŒ)
 	m_data.m_color = DirectX::SimpleMath::Color(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
-// »ö»ó º¯È¯ °ª ¼³Á¤ (¿¹: ÅØ½ºÃ³ »ö»ó¿¡ °öÇØÁú °ª)
+// ìƒ‰ìƒ ë³€í™˜ ê°’ ì„¤ì • (ì˜ˆ: í…ìŠ¤ì²˜ ìƒ‰ìƒì— ê³±í•´ì§ˆ ê°’)
 void ColorBuffer::SetColor(const DirectX::SimpleMath::Color& color)
 {
 	m_data.m_color = color;
 }
 
-// ÇöÀç ¼³Á¤µÈ »ö»ó º¯È¯ °ªÀ» ¹İÈ¯ (ÀĞ±â Àü¿ë)
+// í˜„ì¬ ì„¤ì •ëœ ìƒ‰ìƒ ë³€í™˜ ê°’ì„ ë°˜í™˜ (ì½ê¸° ì „ìš©)
 DirectX::SimpleMath::Color ColorBuffer::GetColor() const
 {
 	return m_data.m_color;
