@@ -18,6 +18,43 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\Renderer\2D\SpriteBatch2D.cpp" />
+    <ClCompile Include="src\Renderer\IA\IndexBuffer.cpp" />
+    <ClCompile Include="src\Renderer\IA\InputLayout.cpp" />
+    <ClCompile Include="src\Renderer\IA\VertexBuffer.cpp" />
+    <ClCompile Include="src\Renderer\RenderResources\ConstantBuffer.cpp" />
+    <ClCompile Include="src\Renderer\RenderResources\GlobalBuffer.cpp" />
+    <ClCompile Include="src\Renderer\RenderResources\Texture2D.cpp" />
+    <ClCompile Include="src\Renderer\RenderResources\VertexType.cpp" />
+    <ClCompile Include="src\Renderer\RenderStates\Blend.cpp" />
+    <ClCompile Include="src\Renderer\RenderStates\DepthStencil.cpp" />
+    <ClCompile Include="src\Renderer\RenderStates\Rasterizer.cpp" />
+    <ClCompile Include="src\Renderer\RenderStates\Sampler.cpp" />
+    <ClCompile Include="src\Renderer\Shaders\IShader.cpp" />
+    <ClCompile Include="src\Renderer\Shaders\PixelShader.cpp" />
+    <ClCompile Include="src\Renderer\Shaders\VertexShader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Application.h" />
+    <ClInclude Include="include\EngineAPI.h" />
+    <ClInclude Include="include\Renderer\2D\SpriteBatch2D.h" />
+    <ClInclude Include="include\Renderer\IA\IndexBuffer.h" />
+    <ClInclude Include="include\Renderer\IA\InputLayout.h" />
+    <ClInclude Include="include\Renderer\IA\VertexBuffer.h" />
+    <ClInclude Include="include\Renderer\RenderResources\ConstantBuffer.h" />
+    <ClInclude Include="include\Renderer\RenderResources\GlobalBuffer.h" />
+    <ClInclude Include="include\Renderer\RenderResources\Texture2D.h" />
+    <ClInclude Include="include\Renderer\RenderResources\VertexType.h" />
+    <ClInclude Include="include\Renderer\RenderStates\Blend.h" />
+    <ClInclude Include="include\Renderer\RenderStates\DepthStencil.h" />
+    <ClInclude Include="include\Renderer\RenderStates\Rasterizer.h" />
+    <ClInclude Include="include\Renderer\RenderStates\Sampler.h" />
+    <ClInclude Include="include\Renderer\Shaders\IShader.h" />
+    <ClInclude Include="include\Renderer\Shaders\PixelShader.h" />
+    <ClInclude Include="include\Renderer\Shaders\VertexShader.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -27,26 +64,26 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -70,12 +107,33 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)_Build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)_Build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)_Build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)_Build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)_Build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)_Build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)_Build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)_Build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>./;../;include/;src/;</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -90,6 +148,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>./;../;include/;src/;</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -102,6 +162,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>./;../;include/;src/;</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -116,57 +178,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>./;../;include/;src/;</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="include\Application.h" />
-    <ClInclude Include="include\EngineAPI.h" />
-    <ClInclude Include="include\Renderer\2D\SpriteBatch2D.h" />
-    <ClInclude Include="include\Renderer\IA\IndexBuffer.h" />
-    <ClInclude Include="include\Renderer\IA\InputLayout.h" />
-    <ClInclude Include="include\Renderer\IA\VertexBuffer.h" />
-    <ClInclude Include="include\Renderer\RenderResources\ConstantBuffer.h" />
-    <ClInclude Include="include\Renderer\RenderResources\GlobalBuffer.h" />
-    <ClInclude Include="include\Renderer\RenderResources\Texture2D.h" />
-    <ClInclude Include="include\Renderer\RenderResources\VertexType.h" />
-    <ClInclude Include="include\Renderer\RenderStates\Blend.h" />
-    <ClInclude Include="include\Renderer\RenderStates\DepthStencil.h" />
-    <ClInclude Include="include\Renderer\RenderStates\Rasterizer.h" />
-    <ClInclude Include="include\Renderer\RenderStates\Sampler.h" />
-    <ClInclude Include="include\Renderer\Shaders\IShader.h" />
-    <ClInclude Include="include\Renderer\Shaders\PixelShader.h" />
-    <ClInclude Include="include\Renderer\Shaders\VertexShader.h" />
-    <ClInclude Include="include\Sound\AudioDevice.h" />
-    <ClInclude Include="include\Sound\AudioEngine.h" />
-    <ClInclude Include="include\Sound\MusicStream.h" />
-    <ClInclude Include="include\Sound\Sound.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Application.cpp" />
-    <ClCompile Include="src\Renderer\2D\SpriteBatch2D.cpp" />
-    <ClCompile Include="src\Renderer\IA\IndexBuffer.cpp" />
-    <ClCompile Include="src\Renderer\IA\InputLayout.cpp" />
-    <ClCompile Include="src\Renderer\IA\VertexBuffer.cpp" />
-    <ClCompile Include="src\Renderer\RenderResources\ConstantBuffer.cpp" />
-    <ClCompile Include="src\Renderer\RenderResources\GlobalBuffer.cpp" />
-    <ClCompile Include="src\Renderer\RenderResources\Texture2D.cpp" />
-    <ClCompile Include="src\Renderer\RenderResources\VertexType.cpp" />
-    <ClCompile Include="src\Renderer\RenderStates\Blend.cpp" />
-    <ClCompile Include="src\Renderer\RenderStates\DepthStencil.cpp" />
-    <ClCompile Include="src\Renderer\RenderStates\Rasterizer.cpp" />
-    <ClCompile Include="src\Renderer\RenderStates\Sampler.cpp" />
-    <ClCompile Include="src\Renderer\Shaders\IShader.cpp" />
-    <ClCompile Include="src\Renderer\Shaders\PixelShader.cpp" />
-    <ClCompile Include="src\Renderer\Shaders\VertexShader.cpp" />
-    <ClCompile Include="src\Sound\AudioDevice.cpp" />
-    <ClCompile Include="src\Sound\AudioEngine.cpp" />
-    <ClCompile Include="src\Sound\MusicStream.cpp" />
-    <ClCompile Include="src\Sound\Sound.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
