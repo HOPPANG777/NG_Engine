@@ -152,18 +152,17 @@
   <ItemGroup>
     <ClInclude Include="include\Engine.Client.h" />
     <ClInclude Include="include\framework.h" />
-    <ClInclude Include="include\Resource.h" />
     <ClInclude Include="include\targetver.h" />
+    <ClInclude Include="include\resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine.Client.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="resource\Engine.Client.rc" />
+    <ResourceCompile Include="resource\Resource.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resource\Engine.Client.ico" />
-    <Image Include="resource\small.ico" />
+    <Image Include="resource\HO.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -21,10 +21,10 @@
     <ClInclude Include="include\targetver.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Resource.h">
+    <ClInclude Include="include\Engine.Client.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Engine.Client.h">
+    <ClInclude Include="include\resource.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -34,15 +34,12 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="resource\Engine.Client.rc">
+    <ResourceCompile Include="resource\Resource.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resource\small.ico">
-      <Filter>resource</Filter>
-    </Image>
-    <Image Include="resource\Engine.Client.ico">
+    <Image Include="resource\HO.ico">
       <Filter>resource</Filter>
     </Image>
   </ItemGroup>

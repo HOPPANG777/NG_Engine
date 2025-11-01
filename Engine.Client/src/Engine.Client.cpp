@@ -7,6 +7,7 @@
 
 #include "Engine.Game/include/EngineAPI.h"
 #include "Engine.Graphics/include/DX/D3D11GraphicsEngine.h"
+#include "resource.h"
 
 namespace
 {
@@ -117,7 +118,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(lpCmdLine);
 	UNREFERENCED_PARAMETER(nCmdShow);
 
-	const std::wstring windowTitle = BuildWindowTitle(L"NG Engine Client", Engine_GetVersionString());
+	const std::wstring windowTitle = BuildWindowTitle(L"NGEngine", Engine_GetVersionString());
 
 	if (Engine_Initialize() != Engine::Status::OK)
 	{
@@ -137,7 +138,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		desc.window.instance = hInstance;
 		desc.window.width = 1280;
 		desc.window.height = 720;
-		desc.window.icon = LoadIconW(hInstance, MAKEINTRESOURCE(IDI_ENGINECLIENT));
+		desc.window.icon = LoadIconW(hInstance, MAKEINTRESOURCE(IDI_HO));
 		desc.vsync = true;
 
 		if (!clientApp.Initialize(desc))

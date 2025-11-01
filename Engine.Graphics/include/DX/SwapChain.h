@@ -45,7 +45,7 @@ namespace NG_Engine
             Microsoft::WRL::ComPtr<IDXGISwapChain> m_swapChain = nullptr;
 
             // º¸°ü¿ë
-            HWND        m_hwnd;
+            HWND        m_hwnd = nullptr;
             DXGI_FORMAT m_format = DXGI_FORMAT_B8G8R8A8_UNORM;
             UINT        m_bufferCount = 2;
             bool        m_vsync = false;

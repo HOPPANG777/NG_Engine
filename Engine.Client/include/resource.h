@@ -1,30 +1,16 @@
-ï»¿//{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ì—ì„œ ìƒì„±í•œ í¬í•¨ íŒŒì¼ì…ë‹ˆë‹¤.
-// ë‹¤ìŒì—ì„œ ì‚¬ìš© Engine.Client.rc
+//{{NO_DEPENDENCIES}}
+// Microsoft Visual C++ generated include file.
+// Used by Resource.rc
 
-#define IDS_APP_TITLE			103
+#define IDI_HO				105
 
-#define IDR_MAINFRAME			128
-#define IDD_ENGINECLIENT_DIALOG	102
-#define IDD_ABOUTBOX			103
-#define IDM_ABOUT				104
-#define IDM_EXIT				105
-#define IDI_ENGINECLIENT			107
-#define IDI_SMALL				108
-#define IDC_ENGINECLIENT			109
-#define IDC_MYICON				2
-#ifndef IDC_STATIC
-#define IDC_STATIC				-1
-#endif
-// ë‹¤ìŒì€ ìƒˆ ê°œì²´ì— ì‚¬ìš©í•  ê¸°ë³¸ê°’ì…ë‹ˆë‹¤.
-//
+// ´ÙÀ½Àº »õ °³Ã¼¿¡ »ç¿ëÇÒ ±âº»°ªÀÔ´Ï´Ù.
+// 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-
-#define _APS_NO_MFC					130
-#define _APS_NEXT_RESOURCE_VALUE	129
-#define _APS_NEXT_COMMAND_VALUE		32771
-#define _APS_NEXT_CONTROL_VALUE		1000
-#define _APS_NEXT_SYMED_VALUE		110
+#define _APS_NEXT_RESOURCE_VALUE        101
+#define _APS_NEXT_COMMAND_VALUE         40001
+#define _APS_NEXT_CONTROL_VALUE         1001
+#define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
