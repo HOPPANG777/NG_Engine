@@ -8,11 +8,6 @@
 
 #include <directxtk/SimpleMath.h>
 
-//namespace ImGui
-//{
-//	struct ImGuiIO;
-//}
-
 namespace NG_Engine
 {
 

@@ -6,11 +6,6 @@
 #include <cstddef>
 #include <cstdint>
 
-//namespace ImGui
-//{
-//	struct ImGuiIO;
-//}
-
 namespace NG_Engine
 {
 	class Keyboard

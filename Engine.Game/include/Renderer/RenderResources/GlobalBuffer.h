@@ -68,7 +68,7 @@ namespace NG_Engine
 		struct IndexStruct
 		{
 			UINT m_index = 0;
-			DirectX::SimpleMath::Vector3 m_dummy = DirectX::SimpleMath::Vector3(0, 0, 0);
+			DirectX::SimpleMath::Vector3 m_dummy = DirectX::SimpleMath::Vector3::Zero;
 		};
 
 		IndexStruct m_data;
