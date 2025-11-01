@@ -298,6 +298,9 @@ void D3D11Device::PrintAdapterSummary() const
     {
         std::wcout << L"Selected Adapter : [" << m_selectedAdapterIndex << L"] "
             << m_adapterInfos[static_cast<size_t>(m_selectedAdapterIndex)].desc.Description << std::endl;
+        std::cout << "\n";
+        std::cout << "//=======================================================================================//" << "\n\n";
+
     }
     else
     {

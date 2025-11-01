@@ -82,9 +82,7 @@ namespace Common
 #define CHECK(expr) ((void)0)
 #endif
 
-
 	// ------------------ Color ------------------
-
 	constexpr float Red[4]{ 1.0f, 0.0f, 0.0f, 1.0f };
 	constexpr float Green[4]{ 0.0f, 1.0f, 0.0f, 1.0f };
 	constexpr float Blue[4]{ 0.0f, 0.0f, 1.0f, 1.0f };
@@ -95,4 +93,5 @@ namespace Common
 	constexpr float White[4]{ 1.0f, 1.0f, 1.0f, 1.0f };
 	constexpr float Gray[4]{ 0.4f, 0.4f, 0.4f, 1.0f };
 	constexpr float Transparent[4]{ 0.0f, 0.0f, 0.0f, 0.0f };
+
 }
