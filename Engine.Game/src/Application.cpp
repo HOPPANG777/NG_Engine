@@ -1,7 +1,9 @@
 ﻿#include "Application.h"
 #include "IGraphicsEngine.h"
+#include "Common.h"
 
 using namespace NG_Engine;
+using namespace Common;
 
 Application::Application(Graphics::IGraphicsEngine& graphics)
     : g_graphics(graphics)
@@ -61,8 +63,7 @@ int Application::Run()
 
         OnUpdate(dt);
 
-        const float clear[4]{ 0.1f, 0.1f, 0.12f, 1.0f };
-        BeginFrame(clear);
+        BeginFrame(Gray);
         OnRender();
         EndFrame();
     }
