@@ -1,180 +1,159 @@
-﻿// Engine.Client.cpp : 애플리케이션에 대한 진입점을 정의합니다.
-//
-
-#include "framework.h"
+﻿#include "framework.h"
 #include "Engine.Client.h"
 
-#define MAX_LOADSTRING 100
+#include <limits>
+#include <string>
+#include <utility>
 
-// 전역 변수:
-HINSTANCE hInst;                                // 현재 인스턴스입니다.
-WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
-WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
+#include "Engine.Game/include/EngineAPI.h"
+#include "Engine.Graphics/include/DX/D3D11GraphicsEngine.h"
+#include "resource.h"
 
-// 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
-ATOM                MyRegisterClass(HINSTANCE hInstance);
-BOOL                InitInstance(HINSTANCE, int);
-LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
-INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+using namespace NG_Engine;
+
+namespace
+{
+	std::wstring BuildWindowTitle(const wchar_t* baseTitle, const char* version)
+	{
+		std::wstring title = baseTitle ? baseTitle : L"";
+		if (version && *version)
+		{
+			if (!title.empty())
+			{
+				title.append(L" ");
+			}
+			title.append(L"v");
+			while (*version)
+			{
+				title.push_back(static_cast<wchar_t>(*version++));
+			}
+		}
+		return title;
+	}
+}
+
+EngineClient::EngineClient(Graphics::IGraphicsEngine& graphics, std::wstring baseTitle)
+	: Application(graphics)
+	, m_baseTitle(std::move(baseTitle))
+{
+	m_lastPresentedFps = std::numeric_limits<std::uint32_t>::max();
+}
+
+void EngineClient::OnInit()
+{
+	m_titleTimer = 0.0f;
+	m_presentedTitle = m_baseTitle;
+
+	if (g_desc.window.handle)
+	{
+		SetWindowTextW(g_desc.window.handle, m_presentedTitle.c_str());
+	}
+
+	std::wstring debugMessage = L"[Engine.Client] Initialized window: ";
+	debugMessage += m_presentedTitle;
+	debugMessage += L"\n";
+	OutputDebugStringW(debugMessage.c_str());
+}
+
+void EngineClient::OnUpdate(float dt)
+{
+	m_titleTimer += dt;
+	if (m_titleTimer < 0.25f)
+	{
+		return;
+	}
+	m_titleTimer = 0.0f;
+
+	const std::uint32_t fps = g_time.GetFPS();
+
+	std::wstring newTitle = m_baseTitle;
+	newTitle.append(L" | FPS: ");
+	if (fps == 0)
+	{
+		newTitle.append(L"--");
+	}
+	else
+	{
+		newTitle.append(std::to_wstring(fps));
+	}
+
+	if (newTitle != m_presentedTitle && g_desc.window.handle)
+	{
+		m_presentedTitle = std::move(newTitle);
+		SetWindowTextW(g_desc.window.handle, m_presentedTitle.c_str());
+	}
+}
+
+void EngineClient::OnRender()
+{
+	// Rendering is handled by subsystems wired through Application::BeginFrame/EndFrame.
+	// Place per-frame rendering logic here as the engine evolves.
+}
+
+void EngineClient::OnShutdown()
+{
+	OutputDebugStringW(L"[Engine.Client] Shutdown requested.\n");
+}
+
+bool EngineClient::OnMsg(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
+{
+
+	UNREFERENCED_PARAMETER(handle);
+	UNREFERENCED_PARAMETER(lParam);
+
+	if (message == WM_KEYDOWN && wParam == VK_ESCAPE)
+	{
+
+		PostQuitMessage(0);
+		return true;
+	}
+
+	return false;
+}
+
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-                     _In_opt_ HINSTANCE hPrevInstance,
-                     _In_ LPWSTR    lpCmdLine,
-                     _In_ int       nCmdShow)
+	_In_opt_ HINSTANCE hPrevInstance,
+	_In_ LPWSTR    lpCmdLine,
+	_In_ int       nCmdShow)
 {
-    UNREFERENCED_PARAMETER(hPrevInstance);
-    UNREFERENCED_PARAMETER(lpCmdLine);
+	UNREFERENCED_PARAMETER(hPrevInstance);
+	UNREFERENCED_PARAMETER(lpCmdLine);
+	UNREFERENCED_PARAMETER(nCmdShow);
 
-    // TODO: 여기에 코드를 입력합니다.
+	const std::wstring windowTitle = BuildWindowTitle(L"NG Engine Client", Engine_GetVersionString());
 
-    // 전역 문자열을 초기화합니다.
-    LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_ENGINECLIENT, szWindowClass, MAX_LOADSTRING);
-    MyRegisterClass(hInstance);
+	if (Engine_Initialize() != Engine::Status::OK)
+	{
+		MessageBoxW(nullptr, L"Failed to initialize NG_Engine core.", windowTitle.c_str(), MB_OK | MB_ICONERROR);
+		return -1;
+	}
 
-    // 애플리케이션 초기화를 수행합니다:
-    if (!InitInstance (hInstance, nCmdShow))
-    {
-        return FALSE;
-    }
+	int exitCode = -1;
 
-    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_ENGINECLIENT));
+	{
+		Graphics::D3D11GraphicsEngine graphicsEngine;
+		EngineClient clientApp(graphicsEngine, windowTitle);
 
-    MSG msg;
+		AppDesc desc{};
+		desc.window.appName = windowTitle;
+		desc.window.instance = hInstance;
+		desc.window.width = 1280;
+		desc.window.height = 720;
+		desc.window.icon = LoadIconW(hInstance, MAKEINTRESOURCE(IDI_ENGINECLIENT));
+		desc.vsync = true;
 
-    // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
-    {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-        {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
-    }
+		if (!clientApp.Initialize(desc))
+		{
+			MessageBoxW(nullptr, L"Failed to initialize the client application.", windowTitle.c_str(), MB_OK | MB_ICONERROR);
+		}
+		else
+		{
+			exitCode = clientApp.Run();
+		}
+	}
 
-    return (int) msg.wParam;
-}
+	Engine_Shutdown();
 
-
-
-//
-//  함수: MyRegisterClass()
-//
-//  용도: 창 클래스를 등록합니다.
-//
-ATOM MyRegisterClass(HINSTANCE hInstance)
-{
-    WNDCLASSEXW wcex;
-
-    wcex.cbSize = sizeof(WNDCLASSEX);
-
-    wcex.style          = CS_HREDRAW | CS_VREDRAW;
-    wcex.lpfnWndProc    = WndProc;
-    wcex.cbClsExtra     = 0;
-    wcex.cbWndExtra     = 0;
-    wcex.hInstance      = hInstance;
-    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ENGINECLIENT));
-    wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
-    wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
-    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_ENGINECLIENT);
-    wcex.lpszClassName  = szWindowClass;
-    wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
-
-    return RegisterClassExW(&wcex);
-}
-
-//
-//   함수: InitInstance(HINSTANCE, int)
-//
-//   용도: 인스턴스 핸들을 저장하고 주 창을 만듭니다.
-//
-//   주석:
-//
-//        이 함수를 통해 인스턴스 핸들을 전역 변수에 저장하고
-//        주 프로그램 창을 만든 다음 표시합니다.
-//
-BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
-{
-   hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
-
-   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
-
-   if (!hWnd)
-   {
-      return FALSE;
-   }
-
-   ShowWindow(hWnd, nCmdShow);
-   UpdateWindow(hWnd);
-
-   return TRUE;
-}
-
-//
-//  함수: WndProc(HWND, UINT, WPARAM, LPARAM)
-//
-//  용도: 주 창의 메시지를 처리합니다.
-//
-//  WM_COMMAND  - 애플리케이션 메뉴를 처리합니다.
-//  WM_PAINT    - 주 창을 그립니다.
-//  WM_DESTROY  - 종료 메시지를 게시하고 반환합니다.
-//
-//
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
-    switch (message)
-    {
-    case WM_COMMAND:
-        {
-            int wmId = LOWORD(wParam);
-            // 메뉴 선택을 구문 분석합니다:
-            switch (wmId)
-            {
-            case IDM_ABOUT:
-                DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-                break;
-            case IDM_EXIT:
-                DestroyWindow(hWnd);
-                break;
-            default:
-                return DefWindowProc(hWnd, message, wParam, lParam);
-            }
-        }
-        break;
-    case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-            EndPaint(hWnd, &ps);
-        }
-        break;
-    case WM_DESTROY:
-        PostQuitMessage(0);
-        break;
-    default:
-        return DefWindowProc(hWnd, message, wParam, lParam);
-    }
-    return 0;
-}
-
-// 정보 대화 상자의 메시지 처리기입니다.
-INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
-{
-    UNREFERENCED_PARAMETER(lParam);
-    switch (message)
-    {
-    case WM_INITDIALOG:
-        return (INT_PTR)TRUE;
-
-    case WM_COMMAND:
-        if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
-        {
-            EndDialog(hDlg, LOWORD(wParam));
-            return (INT_PTR)TRUE;
-        }
-        break;
-    }
-    return (INT_PTR)FALSE;
+	return exitCode;
 }

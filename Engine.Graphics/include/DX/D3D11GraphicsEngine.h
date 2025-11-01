@@ -1,10 +1,5 @@
 #pragma once
 
-#include "IGraphicsEngine.h"
-#include "DX/D3D11Device.h"
-#include "DX/SwapChain.h"
-#include "DX/RenderTarget.h"
-
 namespace NG_Engine
 {
     namespace Graphics
@@ -29,6 +24,7 @@ namespace NG_Engine
             SwapChain m_swapChain;
             RenderTarget m_backBuffer;
             bool m_initialized = false;
+
         };
     }
 }

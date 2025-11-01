@@ -1,4 +1,8 @@
 #include "DX/D3D11GraphicsEngine.h"
+#include "IGraphicsEngine.h"
+#include "DX/D3D11Device.h"
+#include "DX/SwapChain.h"
+#include "DX/RenderTarget.h"
 
 #include "Common.h"
 
