@@ -1,6 +1,13 @@
 #include "Application.h"
+#include "IGraphicsEngine.h"
 
 using namespace NG_Engine;
+
+Application::Application(Graphics::IGraphicsEngine& graphics)
+    : g_graphics(graphics)
+{
+
+}
 
 bool Application::Initialize(const AppDesc& desc)
 {
@@ -17,19 +24,22 @@ bool Application::Initialize(const AppDesc& desc)
     if (!g_platform.CreateWindowInstance(wd, this)) return false;
     g_platform.Show();
 
-    if (!g_device.Create()) return false;
+    g_desc.window.handle = g_platform.g_handle;
+    g_desc.window.width = g_platform.g_width;
+    g_desc.window.height = g_platform.g_height;
 
-    DXDevice dx = g_device.GetDXDevice();
+    Graphics::GraphicsInitDesc graphicsDesc{};
+    graphicsDesc.window = g_platform.g_handle;
+    graphicsDesc.width = g_platform.g_width;
+    graphicsDesc.height = g_platform.g_height;
+    graphicsDesc.vsync = desc.vsync;
+    if (!g_graphics.Initialize(graphicsDesc))
+    {
+        g_platform.Destroy();
+        return false;
+    }
 
-    SwapChainDesc scd{};
-    scd.hwnd = g_platform.g_handle;
-    scd.width = g_platform.g_width;
-    scd.height = g_platform.g_height;
-    scd.format = DXGI_FORMAT_R8G8B8A8_UNORM;
-    scd.vsync = desc.vsync;
-    if (!g_swapchain.Create(dx, scd)) return false;
-
-    if (!g_backbuffer.CreateFromSwapChain(dx, g_swapchain)) return false;
+    bGraphicsInitialized = true;
 
     g_time.Reset();
     OnInit();
@@ -41,7 +51,11 @@ int Application::Run()
 {
     while (bRunning)
     {
-        if (!g_platform.PumpOnce()) break;
+        if (!g_platform.PumpOnce())
+        {
+            bRunning = false;
+            break;
+        }
 
         float dt = g_time.Tick();
 
@@ -59,22 +73,28 @@ int Application::Run()
 
 void Application::Shutdown()
 {
+    bRunning = false;
+
     OnShutdown();
-    g_backbuffer.Destroy();
-    g_swapchain.Destroy();
-    g_device.Destroy();
+
+    if (bGraphicsInitialized)
+    {
+        g_graphics.Shutdown();
+        bGraphicsInitialized = false;
+    }
+
     g_platform.Destroy();
 }
 
 void Application::OnResize(UINT width, UINT height)
 {
     if (width == 0 || height == 0) return;
+    if (!bGraphicsInitialized) return;
 
-    DXDevice dx = g_device.GetDXDevice();
+    g_desc.window.width = width;
+    g_desc.window.height = height;
 
-    g_backbuffer.Destroy();
-    g_swapchain.Resize(width, height);
-    g_backbuffer.CreateFromSwapChain(dx, g_swapchain);
+    g_graphics.Resize(width, height);
 }
 
 bool Application::OnMsg(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
@@ -84,13 +104,14 @@ bool Application::OnMsg(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 
 void Application::BeginFrame(const float clear[4])
 {
-    DXDevice dx = g_device.GetDXDevice();
+    if (!bGraphicsInitialized) return;
 
-    g_backbuffer.Bind(dx);
-    g_backbuffer.Clear(dx, clear);
+    g_graphics.BeginFrame(clear);
 }
 
 void Application::EndFrame()
 {
-    g_swapchain.Present(g_desc.vsync ? 1u : 0u);
+    if (!bGraphicsInitialized) return;
+
+    g_graphics.EndFrame(g_desc.vsync);
 }

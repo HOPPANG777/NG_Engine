@@ -4,12 +4,13 @@
     <ClCompile Include="src\DX\D3D11Device.cpp" />
     <ClCompile Include="src\DX\RenderTarget.cpp" />
     <ClCompile Include="src\DX\SwapChain.cpp" />
-    <ClCompile Include="src\Graphics.cpp" />
+    <ClCompile Include="src\DX\D3D11GraphicsEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\DX\D3D11Device.h" />
     <ClInclude Include="include\DX\RenderTarget.h" />
     <ClInclude Include="include\DX\SwapChain.h" />
-    <ClInclude Include="include\IGraphics.h" />
+    <ClInclude Include="include\IGraphicsEngine.h" />
+    <ClInclude Include="include\DX\D3D11GraphicsEngine.h" />
   </ItemGroup>
 </Project>

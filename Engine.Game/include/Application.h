@@ -3,20 +3,23 @@
 #include "Core/Platform.h"
 #include "Core/Time.h"
 
-#include "EngineAPI.h"
-
 namespace NG_Engine
 {
     struct AppDesc
     {
         WinDesc window;
-        bool         vsync{ false };
+        bool vsync = false;
     };
+
+    namespace Graphics
+    {
+        class IGraphicsEngine;
+    }
 
     class Application : public IWinEvents
     {
     public:
-        Application() = default;
+        explicit Application(Graphics::IGraphicsEngine& graphics);
         virtual ~Application() = default;
 
         bool Initialize(const AppDesc& desc);
@@ -29,8 +32,8 @@ namespace NG_Engine
 
     protected: // hooks
         virtual void OnInit() {}
-        virtual void OnUpdate(float dt) {}
-        virtual void OnRender() {}
+        virtual void OnUpdate(float dt) = 0;
+        virtual void OnRender() = 0;
         virtual void OnShutdown() {}
 
     protected:
@@ -42,10 +45,8 @@ namespace NG_Engine
         Platform     g_platform;
         Time         g_time;
 
-        D3D11Device  g_device;
-        SwapChain    g_swapchain;
-        RenderTarget g_backbuffer;
-
+        Graphics::IGraphicsEngine& g_graphics;
         bool         bRunning = false;
+        bool         bGraphicsInitialized = false;
     };
 } // namespace NG_Engine
