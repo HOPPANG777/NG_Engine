@@ -95,7 +95,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;../;include/;src/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../;include/;src/;resource/;</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -111,7 +111,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;../;include/;src/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../;include/;src/;resource/;</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -125,7 +125,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;../;include/;src/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../;include/;src/;resource/;</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -141,7 +141,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;../;include/;src/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../;include/;src/;resource/;</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -159,11 +159,11 @@
     <ClCompile Include="src\Engine.Client.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Engine.Client.rc" />
+    <ResourceCompile Include="resource\Engine.Client.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Engine.Client.ico" />
-    <Image Include="small.ico" />
+    <Image Include="resource\Engine.Client.ico" />
+    <Image Include="resource\small.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

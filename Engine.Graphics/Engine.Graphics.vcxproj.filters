@@ -1,16 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\DX\D3D11Device.cpp" />
-    <ClCompile Include="src\DX\RenderTarget.cpp" />
-    <ClCompile Include="src\DX\SwapChain.cpp" />
-    <ClCompile Include="src\DX\D3D11GraphicsEngine.cpp" />
+    <ClCompile Include="src\DX\D3D11Device.cpp">
+      <Filter>src\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DX\D3D11GraphicsEngine.cpp">
+      <Filter>src\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DX\RenderTarget.cpp">
+      <Filter>src\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DX\SwapChain.cpp">
+      <Filter>src\DX</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\DX\D3D11Device.h" />
-    <ClInclude Include="include\DX\RenderTarget.h" />
-    <ClInclude Include="include\DX\SwapChain.h" />
-    <ClInclude Include="include\IGraphicsEngine.h" />
-    <ClInclude Include="include\DX\D3D11GraphicsEngine.h" />
+    <ClInclude Include="include\DX\D3D11Device.h">
+      <Filter>include\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DX\D3D11GraphicsEngine.h">
+      <Filter>include\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGraphicsEngine.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DX\RenderTarget.h">
+      <Filter>include\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DX\SwapChain.h">
+      <Filter>include\DX</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{ce51ee57-45c9-4ac0-83a7-058d65a98c36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{57462db8-a83e-4b0f-93a0-8fc46ee7f9e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\DX">
+      <UniqueIdentifier>{866c1a5e-7ee1-4dda-b042-ae12cbca95f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\DX">
+      <UniqueIdentifier>{904fd8da-9acb-422a-ba1b-22c6f7cd6952}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

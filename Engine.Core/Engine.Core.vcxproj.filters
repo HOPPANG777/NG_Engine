@@ -1,18 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\Input\Keyboard.cpp" />
-    <ClCompile Include="src\Input\Mouse.cpp" />
-    <ClCompile Include="src\Core\Platform.cpp" />
-    <ClCompile Include="src\Core\Time.cpp" />
-    <ClCompile Include="src\Core\FileSystem.cpp" />
+    <ClCompile Include="src\Core\FileSystem.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Platform.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Time.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Input\Keyboard.cpp">
+      <Filter>src\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Input\Mouse.cpp">
+      <Filter>src\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Common.h" />
-    <ClInclude Include="include\Input\Keyboard.h" />
-    <ClInclude Include="include\Input\Mouse.h" />
-    <ClInclude Include="include\Core\Time.h" />
-    <ClInclude Include="include\Core\Platform.h" />
-    <ClInclude Include="include\Core\FileSystem.h" />
+    <ClInclude Include="include\Common.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\FileSystem.h">
+      <Filter>include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Platform.h">
+      <Filter>include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Time.h">
+      <Filter>include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Input\Keyboard.h">
+      <Filter>include\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Input\Mouse.h">
+      <Filter>include\Input</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{b7d7be62-fad6-4e09-92cf-fef869a227a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{3e2c2c5b-6dfc-464b-ab6d-9e775108ba24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Core">
+      <UniqueIdentifier>{6200dab1-2bef-49f6-af92-7f0dac39ce2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Input">
+      <UniqueIdentifier>{1f0b7573-ac43-4f29-a58e-625e8abf9007}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Core">
+      <UniqueIdentifier>{7e246694-bf57-4018-b822-e4e8c796b16f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Input">
+      <UniqueIdentifier>{e516dfe3-5e4f-47a4-bb36-09c92da2b894}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

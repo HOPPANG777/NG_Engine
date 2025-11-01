@@ -1,41 +1,153 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\Application.cpp" />
-    <ClCompile Include="src\Renderer\Shaders\PixelShader.cpp" />
-    <ClCompile Include="src\Renderer\Shaders\VertexShader.cpp" />
-    <ClCompile Include="src\Renderer\Shaders\IShader.cpp" />
-    <ClCompile Include="src\Renderer\RenderStates\Sampler.cpp" />
-    <ClCompile Include="src\Renderer\RenderStates\Rasterizer.cpp" />
-    <ClCompile Include="src\Renderer\RenderStates\DepthStencil.cpp" />
-    <ClCompile Include="src\Renderer\RenderStates\Blend.cpp" />
-    <ClCompile Include="src\Renderer\RenderResources\VertexType.cpp" />
-    <ClCompile Include="src\Renderer\RenderResources\Texture2D.cpp" />
-    <ClCompile Include="src\Renderer\RenderResources\GlobalBuffer.cpp" />
-    <ClCompile Include="src\Renderer\RenderResources\ConstantBuffer.cpp" />
-    <ClCompile Include="src\Renderer\IA\VertexBuffer.cpp" />
-    <ClCompile Include="src\Renderer\IA\IndexBuffer.cpp" />
-    <ClCompile Include="src\Renderer\IA\InputLayout.cpp" />
-    <ClCompile Include="src\Renderer\2D\SpriteBatch2D.cpp" />
-    <ClCompile Include="src\EngineAPI.cpp" />
+    <ClCompile Include="src\Application.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\RenderStates\Blend.cpp">
+      <Filter>src\Renderer\RenderStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\RenderStates\DepthStencil.cpp">
+      <Filter>src\Renderer\RenderStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\RenderStates\Rasterizer.cpp">
+      <Filter>src\Renderer\RenderStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\RenderStates\Sampler.cpp">
+      <Filter>src\Renderer\RenderStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\RenderResources\ConstantBuffer.cpp">
+      <Filter>src\Renderer\RenderResources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\RenderResources\GlobalBuffer.cpp">
+      <Filter>src\Renderer\RenderResources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\RenderResources\Texture2D.cpp">
+      <Filter>src\Renderer\RenderResources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\RenderResources\VertexType.cpp">
+      <Filter>src\Renderer\RenderResources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EngineAPI.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\Shaders\PixelShader.cpp">
+      <Filter>src\Renderer\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\Shaders\VertexShader.cpp">
+      <Filter>src\Renderer\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\Shaders\IShader.cpp">
+      <Filter>src\Renderer\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\IA\IndexBuffer.cpp">
+      <Filter>src\Renderer\IA</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\IA\InputLayout.cpp">
+      <Filter>src\Renderer\IA</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\IA\VertexBuffer.cpp">
+      <Filter>src\Renderer\IA</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\2D\SpriteBatch2D.cpp">
+      <Filter>src\Renderer\2D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Application.h" />
-    <ClInclude Include="include\EngineAPI.h" />
-    <ClInclude Include="include\Renderer\Shaders\PixelShader.h" />
-    <ClInclude Include="include\Renderer\Shaders\VertexShader.h" />
-    <ClInclude Include="include\Renderer\Shaders\IShader.h" />
-    <ClInclude Include="include\Renderer\RenderStates\Sampler.h" />
-    <ClInclude Include="include\Renderer\RenderStates\Rasterizer.h" />
-    <ClInclude Include="include\Renderer\RenderStates\DepthStencil.h" />
-    <ClInclude Include="include\Renderer\RenderStates\Blend.h" />
-    <ClInclude Include="include\Renderer\RenderResources\VertexType.h" />
-    <ClInclude Include="include\Renderer\RenderResources\Texture2D.h" />
-    <ClInclude Include="include\Renderer\RenderResources\GlobalBuffer.h" />
-    <ClInclude Include="include\Renderer\RenderResources\ConstantBuffer.h" />
-    <ClInclude Include="include\Renderer\IA\InputLayout.h" />
-    <ClInclude Include="include\Renderer\IA\VertexBuffer.h" />
-    <ClInclude Include="include\Renderer\IA\IndexBuffer.h" />
-    <ClInclude Include="include\Renderer\2D\SpriteBatch2D.h" />
+    <ClInclude Include="include\Application.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EngineAPI.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Renderer\RenderStates\Blend.h">
+      <Filter>include\Renderer\RenderStates</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Renderer\RenderStates\Sampler.h">
+      <Filter>include\Renderer\RenderStates</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Renderer\RenderStates\Rasterizer.h">
+      <Filter>include\Renderer\RenderStates</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Renderer\RenderStates\DepthStencil.h">
+      <Filter>include\Renderer\RenderStates</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Renderer\RenderResources\ConstantBuffer.h">
+      <Filter>include\Renderer\RenderResources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Renderer\RenderResources\GlobalBuffer.h">
+      <Filter>include\Renderer\RenderResources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Renderer\RenderResources\Texture2D.h">
+      <Filter>include\Renderer\RenderResources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Renderer\RenderResources\VertexType.h">
+      <Filter>include\Renderer\RenderResources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Renderer\IA\IndexBuffer.h">
+      <Filter>include\Renderer\IA</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Renderer\IA\InputLayout.h">
+      <Filter>include\Renderer\IA</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Renderer\IA\VertexBuffer.h">
+      <Filter>include\Renderer\IA</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Renderer\Shaders\IShader.h">
+      <Filter>include\Renderer\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Renderer\Shaders\PixelShader.h">
+      <Filter>include\Renderer\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Renderer\Shaders\VertexShader.h">
+      <Filter>include\Renderer\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Renderer\2D\SpriteBatch2D.h">
+      <Filter>include\Renderer\2D</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{86cc1633-48ea-43f4-9cfe-e2fabb9870ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{dc770e74-bcf8-4e18-a0f3-048bc9ebbfb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Renderer">
+      <UniqueIdentifier>{07197e91-0e53-473b-9d46-cdc41be0f490}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Renderer">
+      <UniqueIdentifier>{ab1dac35-d621-4b25-bda8-836650032252}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Renderer\2D">
+      <UniqueIdentifier>{c72a8002-941a-4a4f-9c65-41f16728522d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Renderer\IA">
+      <UniqueIdentifier>{cfe0fe4c-b795-46e2-9dd8-11829a8de822}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Renderer\RenderResources">
+      <UniqueIdentifier>{a07218b9-24b3-40d4-87b4-020965377098}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Renderer\RenderStates">
+      <UniqueIdentifier>{64e3dea7-fb78-42a7-ad0f-f787c5a3c78e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Renderer\Shader">
+      <UniqueIdentifier>{c8d38625-86aa-4b1e-8cb8-255727177dcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Renderer\2D">
+      <UniqueIdentifier>{d1415031-3b23-495d-9878-8123d3753464}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Renderer\IA">
+      <UniqueIdentifier>{81ebb93d-c894-4350-bff4-f9a262d190e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Renderer\Shader">
+      <UniqueIdentifier>{f3b2d656-c582-4ed0-94bb-ebca765e4c92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Renderer\RenderStates">
+      <UniqueIdentifier>{7c40d3d0-fe78-4952-8283-fafb613f3f34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Renderer\RenderResources">
+      <UniqueIdentifier>{ae76114f-78ea-472c-b48e-4dd6b653bde4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
