@@ -12,14 +12,14 @@ inline void VertexBuffer::Create(Graphics::DXDevice dx, const std::vector<T>& ve
 	m_context = dx.context;
 	CHECK(m_device && m_context);
 
-	_stride = sizeof(T);
-	_count = UINT(vertices.size());
+	m_stride = sizeof(T);
+	m_count = UINT(vertices.size());
 
 	D3D11_BUFFER_DESC desc = { 0 };
 
 	desc.Usage = usage;
 	desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-	desc.ByteWidth = _stride * _count;
+	desc.ByteWidth = m_stride * m_count;
 
 	switch (usage)
 	{
@@ -38,7 +38,7 @@ inline void VertexBuffer::Create(Graphics::DXDevice dx, const std::vector<T>& ve
 	ZeroMemory(&subData, sizeof(subData));
 	subData.pSysMem = vertices.data();
 
-	HRESULT hr = m_device->CreateBuffer(&desc, &subData, &_buffer);
+	HRESULT hr = m_device->CreateBuffer(&desc, &subData, &m_buffer);
 	CHECK(hr);
 }
 

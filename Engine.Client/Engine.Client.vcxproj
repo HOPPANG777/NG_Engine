@@ -164,6 +164,17 @@
   <ItemGroup>
     <Image Include="resource\HO.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Engine.Core\Engine.Core.vcxproj">
+      <Project>{bac09a57-e801-4375-ac27-104e143ef73e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Engine.Game\Engine.Game.vcxproj">
+      <Project>{816e54d8-ee62-4212-bb10-1fbe1216feb8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Engine.Graphics\Engine.Graphics.vcxproj">
+      <Project>{540a96a4-d7a7-4c90-b757-ecc4eebb15e7}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
