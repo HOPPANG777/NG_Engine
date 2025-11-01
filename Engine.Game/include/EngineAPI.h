@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Graphics/DX/D3D11Device.h"
-#include "Graphics/DX/SwapChain.h"
-#include "Graphics/DX/RenderTarget.h"
+#include "Engine.Graphics/include/DX/D3D11Device.h"
+#include "Engine.Graphics/include/DX/SwapChain.h"
+#include "Engine.Graphics/include/DX/RenderTarget.h"
 
 namespace NG_Engine
 {

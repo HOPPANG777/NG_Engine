@@ -1,4 +1,5 @@
 #pragma once
+
 #include <d3d11.h>
 #include <wrl/client.h>
 
@@ -8,6 +9,7 @@ namespace NG_Engine
     {
         class D3D11Device;
         class SwapChain;
+        struct DXDevice;
 
         class RenderTarget
         {
@@ -15,11 +17,11 @@ namespace NG_Engine
             RenderTarget() = default;
             ~RenderTarget() { Destroy(); }
 
-            bool CreateFromSwapChain(DXDevice dx, const SwapChain& swapChain);
+            bool CreateFromSwapChain(Graphics::DXDevice dx, const SwapChain& swapChain);
             void Destroy();
 
-            void Bind(DXDevice dx);                    // OMSetRenderTargets + Viewport
-            void Clear(DXDevice dx, const float color[4]);
+            void Bind();                    // OMSetRenderTargets + Viewport
+            void Clear(const float color[4]);
 
             ID3D11RenderTargetView* GetRTV() const { return m_rtv.Get(); }
             const D3D11_VIEWPORT& GetViewport() const { return m_viewport; }

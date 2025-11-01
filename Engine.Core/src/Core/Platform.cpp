@@ -1,5 +1,4 @@
-// 00_Core/Platform.cpp
-#include "Platform.h"
+#include "Core/Platform.h"
 
 using namespace NG_Engine;
 

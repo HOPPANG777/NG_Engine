@@ -1,5 +1,5 @@
-#include "D3D11Device.h"
-#include "SwapChain.h"
+#include "DX/D3D11Device.h"
+#include "DX/SwapChain.h"
 #include "Common.h"
 
 using Microsoft::WRL::ComPtr;

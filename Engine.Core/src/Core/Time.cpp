@@ -1,5 +1,4 @@
-//#include "Include.h"
-#include "Time.h"
+#include "Core/Time.h"
 
 using namespace NG_Engine;
 

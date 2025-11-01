@@ -1,5 +1,6 @@
 #pragma once
 
+#include "d3d11.h"
 #include <dxgi.h>
 #include <dxgi1_2.h>
 #include <wrl/client.h>
@@ -20,6 +21,7 @@ namespace NG_Engine
         };
 
         class D3D11Device; // fwd
+        struct DXDevice;
 
         class SwapChain
         {
@@ -27,7 +29,7 @@ namespace NG_Engine
             SwapChain() = default;
             ~SwapChain() { Destroy(); }
 
-            bool Create(DXDevice device, const SwapChainDesc& desc);
+            bool Create(Graphics::DXDevice device, const SwapChainDesc& desc);
             void Destroy();
 
             bool Resize(UINT width, UINT height);             // 0Àº ¹«½Ã

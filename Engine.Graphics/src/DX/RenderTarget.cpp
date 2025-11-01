@@ -1,6 +1,6 @@
-#include "D3D11Device.h"
-#include "SwapChain.h"
-#include "RenderTarget.h"
+#include "DX/D3D11Device.h"
+#include "DX/SwapChain.h"
+#include "DX/RenderTarget.h"
 #include "Common.h"
 
 using Microsoft::WRL::ComPtr;
@@ -50,7 +50,7 @@ void RenderTarget::Destroy()
     m_context = nullptr;
 }
 
-void RenderTarget::Bind(DXDevice dx)
+void RenderTarget::Bind()
 {
     CHECK(m_context && m_rtv);
     auto* ctx = m_context;
@@ -59,7 +59,7 @@ void RenderTarget::Bind(DXDevice dx)
     ctx->OMSetRenderTargets(1, &rtv, nullptr);
 }
 
-void RenderTarget::Clear(DXDevice dx, const float color[4])
+void RenderTarget::Clear(const float color[4])
 {
     CHECK(m_context);
     if (m_rtv)
