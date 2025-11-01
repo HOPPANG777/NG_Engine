@@ -19,7 +19,7 @@ namespace NG_Engine
             ~D3D11Device() { Destroy(); }
 
         public:
-            bool Create();     // ±âº» ¾î´ðÅÍ, D3D11_CREATE_DEVICE_BGRA_SUPPORT(+DEBUG)
+            bool Create();     // âº» , D3D11_CREATE_DEVICE_BGRA_SUPPORT(+DEBUG)
             void Destroy();
 
         public:
@@ -27,11 +27,11 @@ namespace NG_Engine
             ID3D11DeviceContext* GetDC() const { return m_context.Get(); }
 
         public:
-            inline DXDevice GetDXDevice(const D3D11Device& device)
+            DXDevice GetDXDevice() const
             {
                 return {
-                    device.GetDevice(),
-                    device.GetDC()
+                    m_device.Get(),
+                    m_context.Get()
                 };
             }
 
