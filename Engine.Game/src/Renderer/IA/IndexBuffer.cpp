@@ -1,11 +1,11 @@
-#include "Graphics/DX/D3D11Device.h"
-#include "IndexBuffer.h"
+#include "Renderer/IA/IndexBuffer.h"
+#include "Engine.Graphics/include/DX/D3D11Device.h"
 #include "Common.h"
 
 using namespace NG_Engine;
 using namespace Common;
 
-void IndexBuffer::Create(DXDevice dx, const std::vector<UINT>& indices, const D3D11_USAGE& usage)
+void IndexBuffer::Create(Graphics::DXDevice dx, const std::vector<UINT>& indices, const D3D11_USAGE& usage)
 {
 	m_device = dx.device;
 	m_context = dx.context;
@@ -38,10 +38,10 @@ void IndexBuffer::Create(DXDevice dx, const std::vector<UINT>& indices, const D3
 	subData.pSysMem = indices.data();
 
 	HRESULT hr = m_device->CreateBuffer(&desc, &subData, &m_buffer);
-	CHECK(hr);
+	CHECK(SUCCEEDED(hr));
 }
 
-void IndexBuffer::SetIA(DXDevice dx)
+void IndexBuffer::SetIA()
 {
 	m_context->IASetIndexBuffer(
 		m_buffer.Get(), 
@@ -50,7 +50,7 @@ void IndexBuffer::SetIA(DXDevice dx)
 	);
 }
 
-void IndexBuffer::Destory()
+void IndexBuffer::Destroy()
 {
 	//m_buffer.Reset();      // ComPtr이 참조 해제
 	m_device = nullptr;    // 비소유 포인터 초기화

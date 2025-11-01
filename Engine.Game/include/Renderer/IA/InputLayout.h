@@ -6,6 +6,11 @@
 
 namespace NG_Engine
 {
+	namespace Graphics
+	{
+		struct DXDevice;
+	}
+
 	class InputLayout
 	{
 	public:
@@ -13,10 +18,10 @@ namespace NG_Engine
 			Destroy();
 		}
 
-		void Create(DXDevice dx, const D3D11_INPUT_ELEMENT_DESC* desc, const size_t& count, ID3DBlob* blob);
-		void SetIA(DXDevice dx);
+		void Create(Graphics::DXDevice dx, const D3D11_INPUT_ELEMENT_DESC* desc, const size_t& count, ID3DBlob* blob);
+		void SetIA();
 
-		void Destory();
+		void Destroy();
 
 	public:
 		ID3D11InputLayout* GetResource() const { return m_inputLayout.Get(); }

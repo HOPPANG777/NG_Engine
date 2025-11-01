@@ -5,20 +5,26 @@
 #include <string>
 #include <algorithm>
 #include <vector>
+#include <d3dcompiler.h>
 
 
 namespace NG_Engine
 {
+	namespace Graphics
+	{
+		struct DXDevice;
+	}
+
 	class IShader
 	{
 	public:
 		virtual ~IShader() = default;
 
-		virtual void Create(DXDevice dx, const std::wstring& path, const std::string& entryName) = 0;
+		virtual void Create(Graphics::DXDevice dx, const std::wstring& path, const std::string& entryName) = 0;
 
 		virtual void Clear() = 0;
 		virtual void SetShader() = 0;
-
+		
 	public:
 		ID3DBlob* GetBlob() const { return m_blob.Get(); }
 

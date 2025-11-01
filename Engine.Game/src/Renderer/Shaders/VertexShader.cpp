@@ -1,11 +1,12 @@
-#include "Graphics/DX/D3D11Device.h"
-#include "VertexShader.h"
+#include "Renderer/Shaders/VertexShader.h"
+#include "Renderer/Shaders/IShader.h"
+#include "Engine.Graphics/include/DX/D3D11Device.h"
 #include "Common.h"
 
 using namespace NG_Engine;
 using namespace Common;
 
-void VertexShader::Create(DXDevice dx, const std::wstring& path, const std::string& entryName) override
+void VertexShader::Create(Graphics::DXDevice dx, const std::wstring& path, const std::string& entryName)
 {
 	m_device = dx.device;
 	m_context = dx.context;
@@ -25,7 +26,7 @@ void VertexShader::Create(DXDevice dx, const std::wstring& path, const std::stri
 	CHECK(hr);
 }
 
-void VertexShader::Clear() override
+void VertexShader::Clear()
 {
 	m_shader.Reset();
 	m_blob.Reset();
@@ -33,7 +34,7 @@ void VertexShader::Clear() override
 	m_context = nullptr;
 }
 
-void VertexShader::SetShader() override
+void VertexShader::SetShader()
 {
 	m_context->VSSetShader(m_shader.Get(), nullptr, 0);
 }

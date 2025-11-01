@@ -8,10 +8,15 @@
 
 namespace NG_Engine
 {
+	namespace Graphics
+	{
+		struct DXDevice;
+	}
+
 	class VertexShader : public IShader
 	{
 	public:
-		void Create(DXDevice dx, const std::wstring& path, const std::string& entryName) override;
+		void Create(Graphics::DXDevice dx, const std::wstring& path, const std::string& entryName) override;
 		void Clear() override;
 
 		void SetShader() override;

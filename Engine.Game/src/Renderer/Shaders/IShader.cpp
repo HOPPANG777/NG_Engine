@@ -1,4 +1,4 @@
-#include "IShader.h"
+#include "Renderer/Shaders/IShader.h"
 #include "Common.h"
 
 using namespace NG_Engine;
@@ -19,7 +19,7 @@ void IShader::CheckShaderError(const HRESULT& hr, ID3DBlob* error)
 	}
 }
 
-void IShader::CompileShader(const wstring& path, const string& entryName, const string& profile, ID3DBlob** blob)
+void IShader::CompileShader(const std::wstring& path, const std::string& entryName, const std::string& profile, ID3DBlob** blob)
 {
 	Microsoft::WRL::ComPtr<ID3DBlob> error;
 	HRESULT hr = D3DCompileFromFile
@@ -34,5 +34,5 @@ void IShader::CompileShader(const wstring& path, const string& entryName, const 
 		blob,
 		&error
 	);
-	CHECK(hr);
+	CHECK(SUCCEEDED(hr));
 }

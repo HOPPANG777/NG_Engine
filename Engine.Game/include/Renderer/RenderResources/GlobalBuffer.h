@@ -6,18 +6,23 @@
 
 namespace NG_Engine
 {
+	namespace Graphics
+	{
+		struct DXDevice;
+	}
+
 	class WorldBuffer : public ConstantBuffer
 	{
 		// 16바이트 단위로 데이터 패딩을 해줘야 한다.
 		struct WorldStruct
 		{
-			DirectX::SimpleMath::Matrix _world;
+			DirectX::SimpleMath::Matrix m_world;
 		};
 
-		WorldStruct _data;
+		WorldStruct m_data;
 
 	public:
-		WorldBuffer();
+		WorldBuffer(Graphics::DXDevice dx);
 
 		void SetWorld(const DirectX::SimpleMath::Matrix& world);
 	};
@@ -26,14 +31,14 @@ namespace NG_Engine
 	{
 		struct ViewProjStruct
 		{
-			DirectX::SimpleMath::Matrix _view;
-			DirectX::SimpleMath::Matrix _proj;
+			DirectX::SimpleMath::Matrix m_view;
+			DirectX::SimpleMath::Matrix m_proj;
 		};
 
-		ViewProjStruct _data;
+		ViewProjStruct m_data;
 
 	public:
-		ViewProjectionBuffer();
+		ViewProjectionBuffer(Graphics::DXDevice dx);
 
 		void SetView(const DirectX::SimpleMath::Matrix& view);
 		void SetProjection(const DirectX::SimpleMath::Matrix& proj);
@@ -43,13 +48,13 @@ namespace NG_Engine
 	{
 		struct ColorStruct
 		{
-			DirectX::SimpleMath::Color _color;
+			DirectX::SimpleMath::Color m_color;
 		};
 
-		ColorStruct _data;
+		ColorStruct m_data;
 
 	public:
-		ColorBuffer();
+		ColorBuffer(Graphics::DXDevice dx);
 
 		// 색상 변환 값 설정 (예: 텍스처 색상에 곱해질 값)
 		void SetColor(const DirectX::SimpleMath::Color& color);
@@ -62,14 +67,14 @@ namespace NG_Engine
 	{
 		struct IndexStruct
 		{
-			UINT _index = 0;
-			DirectX::SimpleMath::Vector3 _dummy = Values::ZeroVector3;
+			UINT m_index = 0;
+			DirectX::SimpleMath::Vector3 m_dummy = DirectX::SimpleMath::Vector3(0, 0, 0);
 		};
 
-		IndexStruct _data;
+		IndexStruct m_data;
 
 	public:
-		IndexNumBuffer();
+		IndexNumBuffer(Graphics::DXDevice dx);
 
 		void SetIndex(UINT index);
 	};

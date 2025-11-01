@@ -1,12 +1,12 @@
-#include "Graphics/DX/D3D11Device.h"
-#include "VertexBuffer.h"
+#include "Renderer/IA/VertexBuffer.h"
+#include "Engine.Graphics/include/DX/D3D11Device.h"
 #include "Common.h"
 
 using namespace NG_Engine;
 using namespace Common;
 
 template<typename T>
-inline void VertexBuffer::Create(DXDevice dx, const std::vector<T>& vertices, const D3D11_USAGE& usage)
+inline void VertexBuffer::Create(Graphics::DXDevice dx, const std::vector<T>& vertices, const D3D11_USAGE& usage)
 {
 	m_device = dx.device;
 	m_context = dx.context;
@@ -42,7 +42,7 @@ inline void VertexBuffer::Create(DXDevice dx, const std::vector<T>& vertices, co
 	CHECK(hr);
 }
 
-void VertexBuffer::SetIA(DXDevice dx) 
+void VertexBuffer::SetIA() 
 {
 	m_context->IASetVertexBuffers(
 		0, 
@@ -53,7 +53,7 @@ void VertexBuffer::SetIA(DXDevice dx)
 	);
 }
 
-void VertexBuffer::Destory()
+void VertexBuffer::Destroy()
 {
 	//m_buffer.Reset();      // ComPtr이 참조 해제
 	m_device = nullptr;    // 비소유 포인터 초기화

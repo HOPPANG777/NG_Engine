@@ -1,6 +1,6 @@
-#include "Blend.h"
+#include "Renderer/RenderStates/Blend.h"
 #include "Common.h"
-#include "Graphics/DX/D3D11Device.h"
+#include "Engine.Graphics/include/DX/D3D11Device.h"
 
 #include <cstring>
 

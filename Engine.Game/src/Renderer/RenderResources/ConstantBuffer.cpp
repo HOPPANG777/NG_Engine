@@ -1,11 +1,11 @@
-#include "Graphics/DX/D3D11Device.h"
-#include "ConstantBuffer.h"
+#include "Renderer/RenderResources/ConstantBuffer.h"
+#include "Engine.Graphics/include/DX/D3D11Device.h"
 #include "Common.h"
 
 using namespace NG_Engine;
 using namespace Common;
 
-ConstantBuffer::ConstantBuffer(DXDevice dx, void* data, const UINT dataSize)
+ConstantBuffer::ConstantBuffer(Graphics::DXDevice dx, void* data, const UINT dataSize)
 	: m_data(data), m_dataSize(dataSize)
 {
 	m_device = dx.device;
@@ -17,8 +17,8 @@ ConstantBuffer::ConstantBuffer(DXDevice dx, void* data, const UINT dataSize)
 	m_desc.ByteWidth = dataSize;
 	m_desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
-	HRESULT hr = m_device->CreateBuffer(&desc, nullptr, &m_buffer);
-	CHECK(hr);
+	HRESULT hr = m_device->CreateBuffer(&m_desc, nullptr, &m_buffer);
+	CHECK(SUCCEEDED(hr));
 }
 
 void ConstantBuffer::Destroy()
@@ -31,21 +31,21 @@ void ConstantBuffer::Destroy()
 	//m_dataSize = 0;
 }
 
-void ConstantBuffer::SetVSBuffer(DXDevice dx, const UINT slot)
+void ConstantBuffer::SetVSBuffer(const UINT slot)
 {
 	MapData(m_data, m_dataSize);
 
 	m_context->VSSetConstantBuffers(slot, 1, m_buffer.GetAddressOf());
 }
 
-void ConstantBuffer::SetPSBuffer(DXDevice dx, const UINT slot)
+void ConstantBuffer::SetPSBuffer(const UINT slot)
 {
 	MapData(m_data, m_dataSize);
 
 	m_context->PSSetConstantBuffers(slot, 1, m_buffer.GetAddressOf());
 }
 
-void ConstantBuffer::MapData(DXDevice dx, void* data, const UINT dataSize)
+void ConstantBuffer::MapData(void* data, const UINT dataSize)
 {
 	D3D11_MAPPED_SUBRESOURCE mappedSubResource;
 	m_context->Map(m_buffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedSubResource);

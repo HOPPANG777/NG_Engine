@@ -6,22 +6,27 @@
 
 namespace NG_Engine
 {
+	namespace Graphics
+	{
+		struct DXDevice;
+	}
+
 	class ConstantBuffer
 	{
 	public:
-		void SetVSBuffer(DXDevice dx, const UINT slot);
-		void SetPSBuffer(DXDevice dx, const UINT slot);
+		void SetVSBuffer(const UINT slot);
+		void SetPSBuffer(const UINT slot);
 
 	protected:
-		ConstantBuffer(DXDevice dx, void* data, const UINT dataSize);
+		ConstantBuffer(Graphics::DXDevice dx, void* data, const UINT dataSize);
 		~ConstantBuffer() {
 			Destroy();
 		}
 		
-		void Destory();
+		void Destroy();
 
 	private:
-		void MapData(DXDevice dx, void* data, const UINT dataSize);
+		void MapData(void* data, const UINT dataSize);
 
 	private:
 		ID3D11Device* m_device = nullptr;           // ∫Òº“¿Ø

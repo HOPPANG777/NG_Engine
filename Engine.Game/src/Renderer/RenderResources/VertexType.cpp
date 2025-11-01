@@ -1,4 +1,4 @@
-#include "VertexType.h"
+#include "Renderer/RenderResources/VertexType.h"
 
 std::vector<D3D11_INPUT_ELEMENT_DESC> VertexColor::ieDescs
 {
