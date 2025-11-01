@@ -1,4 +1,4 @@
-#include "01_Graphics/DX/D3D11Device.h"
+#include "Graphics/DX/D3D11Device.h"
 #include "IndexBuffer.h"
 #include "Common.h"
 
@@ -7,6 +7,10 @@ using namespace Common;
 
 void IndexBuffer::Create(DXDevice dx, const std::vector<UINT>& indices, const D3D11_USAGE& usage)
 {
+	m_device = dx.device;
+	m_context = dx.context;
+	CHECK(m_device && m_context);
+
 	m_stride = sizeof(UINT);
 	m_count = UINT(indices.size());
 
@@ -33,11 +37,25 @@ void IndexBuffer::Create(DXDevice dx, const std::vector<UINT>& indices, const D3
 	ZeroMemory(&subData, sizeof(subData));
 	subData.pSysMem = indices.data();
 
-	HRESULT hr = dx.device->CreateBuffer(&desc, &subData, &m_buffer);
+	HRESULT hr = m_device->CreateBuffer(&desc, &subData, &m_buffer);
 	CHECK(hr);
 }
 
 void IndexBuffer::SetIA(DXDevice dx)
 {
-	dx.context->IASetIndexBuffer(m_buffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+	m_context->IASetIndexBuffer(
+		m_buffer.Get(), 
+		DXGI_FORMAT_R32_UINT, 
+		0
+	);
+}
+
+void IndexBuffer::Destory()
+{
+	m_buffer.Reset();      // ComPtr이 참조 해제
+	m_device = nullptr;    // 비소유 포인터 초기화
+	m_context = nullptr;
+	m_stride = 0;
+	m_offset = 0;
+	m_count = 0;
 }

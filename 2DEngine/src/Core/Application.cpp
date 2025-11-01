@@ -1,4 +1,3 @@
-//#include "Include.h"
 #include "Application.h"
 
 using namespace NG_Engine;

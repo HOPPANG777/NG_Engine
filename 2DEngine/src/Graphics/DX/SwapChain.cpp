@@ -16,7 +16,9 @@ static ComPtr<IDXGIFactory> CreateFactory()
 
 bool SwapChain::Create(DXDevice dx, const SwapChainDesc& desc)
 {
-    CHECK(dx.device && dx.context);
+    m_device = dx.device;
+    m_context = dx.context;
+    CHECK(m_device && m_context);
     CHECK(desc.hwnd != nullptr);
 
     m_hwnd = desc.hwnd;
@@ -45,14 +47,14 @@ bool SwapChain::Create(DXDevice dx, const SwapChainDesc& desc)
     ComPtr<IDXGIAdapter> adapter;
     ComPtr<IDXGIFactory> factory;
 
-    HRESULT hr = dx.device->QueryInterface(__uuidof(IDXGIDevice), (void**)dxgiDevice.GetAddressOf());
+    HRESULT hr = m_device->QueryInterface(__uuidof(IDXGIDevice), (void**)dxgiDevice.GetAddressOf());
     CHECK(SUCCEEDED(hr));
     hr = dxgiDevice->GetAdapter(adapter.GetAddressOf());
     CHECK(SUCCEEDED(hr));
     hr = adapter->GetParent(__uuidof(IDXGIFactory), (void**)factory.GetAddressOf());
     CHECK(SUCCEEDED(hr));
 
-    hr = factory->CreateSwapChain(dx.device, &scd, m_swapChain.ReleaseAndGetAddressOf());
+    hr = factory->CreateSwapChain(m_device, &scd, m_swapChain.ReleaseAndGetAddressOf());
     CHECK(SUCCEEDED(hr));
 
     return SUCCEEDED(hr);
@@ -65,6 +67,8 @@ void SwapChain::Destroy()
         m_swapChain->SetFullscreenState(FALSE, nullptr);
     }
     m_swapChain.Reset();
+    m_device = nullptr;
+    m_context = nullptr;
 }
 
 bool SwapChain::Resize(UINT w, UINT h)

@@ -9,13 +9,15 @@ using namespace Common;
 
 bool RenderTarget::CreateFromSwapChain(DXDevice dx, const SwapChain& swap)
 {
-    CHECK(dx.device && swap.Get());
+    m_device = dx.device;
+    m_context = dx.context;
+    CHECK(m_device && m_context && swap.Get());
 
     ComPtr<ID3D11Texture2D> backBuffer;
     HRESULT hr = swap.Get()->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)backBuffer.GetAddressOf());
     CHECK(SUCCEEDED(hr));
 
-    hr = dx.device->CreateRenderTargetView(backBuffer.Get(), nullptr, m_rtv.ReleaseAndGetAddressOf());
+    hr = m_device->CreateRenderTargetView(backBuffer.Get(), nullptr, m_rtv.ReleaseAndGetAddressOf());
     CHECK(SUCCEEDED(hr));
 
     DXGI_SWAP_CHAIN_DESC scd{};
@@ -43,12 +45,14 @@ bool RenderTarget::CreateFromSwapChain(DXDevice dx, const SwapChain& swap)
 void RenderTarget::Destroy()
 {
     m_rtv.Reset();
+    m_device = nullptr;
+    m_context = nullptr;
 }
 
 void RenderTarget::Bind(DXDevice dx)
 {
-    CHECK(dx.context && m_rtv);
-    auto* ctx = dx.context;
+    CHECK(m_context && m_rtv);
+    auto* ctx = m_context;
     ctx->RSSetViewports(1, &m_viewport);
     ID3D11RenderTargetView* rtv = m_rtv.Get();
     ctx->OMSetRenderTargets(1, &rtv, nullptr);
@@ -56,9 +60,9 @@ void RenderTarget::Bind(DXDevice dx)
 
 void RenderTarget::Clear(DXDevice dx, const float color[4])
 {
-    CHECK(dx.context);
+    CHECK(m_context);
     if (m_rtv)
     {
-        dx.context->ClearRenderTargetView(m_rtv.Get(), color);
+        m_context->ClearRenderTargetView(m_rtv.Get(), color);
     }
 }
