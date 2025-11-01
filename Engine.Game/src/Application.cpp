@@ -99,7 +99,7 @@ void Application::OnResize(UINT width, UINT height)
 
 bool Application::OnMsg(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    return false; // ʿ    ޽ Һ
+    return false; // 메세지가 필요할시
 }
 
 void Application::BeginFrame(const float clear[4])
