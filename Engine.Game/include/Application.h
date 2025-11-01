@@ -9,6 +9,7 @@ namespace NG_Engine
     {
         WinDesc window;
         bool vsync = false;
+        int adapterIndex = -1;
     };
 
     namespace Graphics

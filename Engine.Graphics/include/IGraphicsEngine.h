@@ -12,6 +12,7 @@ namespace NG_Engine
             UINT width = 0;
             UINT height = 0;
             bool vsync = false;
+            int adapterIndex = -1;
         };
 
         class IGraphicsEngine

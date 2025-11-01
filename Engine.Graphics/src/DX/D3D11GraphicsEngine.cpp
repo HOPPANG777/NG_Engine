@@ -9,7 +9,7 @@ bool D3D11GraphicsEngine::Initialize(const GraphicsInitDesc& desc)
 {
     m_desc = desc;
 
-    if (!m_device.Create()) return false;
+    if (!m_device.Create(desc.width, desc.height, desc.adapterIndex)) return false;
 
     DXDevice dx = m_device.GetDXDevice();
 
@@ -19,6 +19,8 @@ bool D3D11GraphicsEngine::Initialize(const GraphicsInitDesc& desc)
     scd.height = desc.height;
     scd.format = DXGI_FORMAT_R8G8B8A8_UNORM;
     scd.vsync = desc.vsync;
+    scd.refreshNumerator = m_device.GetSelectedRefreshNumerator();
+    scd.refreshDenominator = m_device.GetSelectedRefreshDenominator();
 
     if (!m_swapChain.Create(dx, scd))
     {
@@ -34,6 +36,7 @@ bool D3D11GraphicsEngine::Initialize(const GraphicsInitDesc& desc)
     }
 
     m_initialized = true;
+    m_desc.adapterIndex = m_device.GetSelectedAdapterIndex();
     return true;
 }
 

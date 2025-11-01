@@ -7,6 +7,12 @@ using namespace NG_Engine;
 using namespace Graphics;
 using namespace Common;
 
+namespace
+{
+    constexpr UINT DEFAULT_REFRESH_NUMERATOR = 60;
+    constexpr UINT DEFAULT_REFRESH_DENOMINATOR = 1;
+}
+
 static ComPtr<IDXGIFactory> CreateFactory()
 {
     ComPtr<IDXGIFactory> f;
@@ -26,14 +32,26 @@ bool SwapChain::Create(DXDevice dx, const SwapChainDesc& desc)
     m_format = desc.format;
     m_bufferCount = desc.bufferCount ? desc.bufferCount : 2;
     m_vsync = desc.vsync;
+    m_refreshNumerator = desc.refreshNumerator;
+    m_refreshDenominator = desc.refreshDenominator ? desc.refreshDenominator : 1;
     m_width = desc.width;
     m_height = desc.height;
 
     DXGI_SWAP_CHAIN_DESC scd{};
     scd.BufferDesc.Width = 0;
     scd.BufferDesc.Height = 0;
-    scd.BufferDesc.RefreshRate.Numerator = m_vsync ? 60 : 0;
-    scd.BufferDesc.RefreshRate.Denominator = 1;
+    if (m_vsync)
+    {
+        UINT numerator = m_refreshNumerator ? m_refreshNumerator : DEFAULT_REFRESH_NUMERATOR;
+        UINT denominator = m_refreshDenominator ? m_refreshDenominator : DEFAULT_REFRESH_DENOMINATOR;
+        scd.BufferDesc.RefreshRate.Numerator = numerator;
+        scd.BufferDesc.RefreshRate.Denominator = denominator;
+    }
+    else
+    {
+        scd.BufferDesc.RefreshRate.Numerator = 0;
+        scd.BufferDesc.RefreshRate.Denominator = 1;
+    }
     scd.BufferDesc.Format = m_format;
     scd.SampleDesc.Count = 1;
     scd.SampleDesc.Quality = 0;
@@ -70,6 +88,8 @@ void SwapChain::Destroy()
     m_swapChain.Reset();
     m_device = nullptr;
     m_context = nullptr;
+    m_refreshNumerator = 0;
+    m_refreshDenominator = 1;
 }
 
 bool SwapChain::Resize(UINT w, UINT h)
