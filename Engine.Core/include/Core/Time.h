@@ -17,7 +17,7 @@ namespace NG_Engine
 		void Update();
 
 		float GetRealDeltaTime() const { return float(m_deltaTime); }
-		float GetDeltaTime() const { return m_scaledDeltaTime; }
+		float GetDeltaTime() const { return float(m_scaledDeltaTime); }
 
 	public:
 		UINT GetFPS() const { return m_fps; }

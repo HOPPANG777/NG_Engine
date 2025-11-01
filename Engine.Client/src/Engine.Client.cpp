@@ -1,5 +1,5 @@
-﻿#include "framework.h"
-#include "Engine.Client.h"
+﻿#include "include/framework.h"
+#include "include/Engine.Client.h"
 
 #include <limits>
 #include <string>
@@ -7,9 +7,6 @@
 
 #include "Engine.Game/include/EngineAPI.h"
 #include "Engine.Graphics/include/DX/D3D11GraphicsEngine.h"
-#include "resource.h"
-
-using namespace NG_Engine;
 
 namespace
 {
@@ -32,8 +29,8 @@ namespace
 	}
 }
 
-EngineClient::EngineClient(Graphics::IGraphicsEngine& graphics, const std::wstring& baseTitle)
-	: Application(graphics), m_baseTitle(baseTitle)
+EngineClient::EngineClient(NG_Engine::Graphics::IGraphicsEngine& graphics, const std::wstring& baseTitle)
+	: NG_Engine::Application(graphics), m_baseTitle(baseTitle)
 {
 	m_lastPresentedFps = std::numeric_limits<std::uint32_t>::max();
 }
@@ -131,10 +128,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	int exitCode = -1;
 
 	{
-		Graphics::D3D11GraphicsEngine graphicsEngine;
-		EngineClient clientApp(graphicsEngine, windowTitle);
+		NG_Engine::Graphics::D3D11GraphicsEngine graphicsEngine;
+		NG_Engine::Graphics::IGraphicsEngine& graphicsInterface = graphicsEngine;
+		EngineClient clientApp(graphicsInterface, windowTitle);
 
-		AppDesc desc{};
+		NG_Engine::AppDesc desc{};
 		desc.window.appName = windowTitle;
 		desc.window.instance = hInstance;
 		desc.window.width = 1280;

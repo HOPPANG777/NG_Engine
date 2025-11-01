@@ -1,5 +1,10 @@
 #pragma once
 
+#include "IGraphicsEngine.h"
+#include "D3D11Device.h"
+#include "SwapChain.h"
+#include "RenderTarget.h"
+
 namespace NG_Engine
 {
     namespace Graphics
