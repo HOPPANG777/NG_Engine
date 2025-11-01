@@ -28,7 +28,7 @@ void InputLayout::SetIA(DXDevice dx)
 
 void InputLayout::Destory()
 {
-	m_inputLayout.Reset();      // ComPtr이 참조 해제
+	//m_inputLayout.Reset();      // ComPtr이 참조 해제
 	m_device = nullptr;    // 비소유 포인터 초기화
 	m_context = nullptr;
 }

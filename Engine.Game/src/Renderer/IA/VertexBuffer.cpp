@@ -55,10 +55,10 @@ void VertexBuffer::SetIA(DXDevice dx)
 
 void VertexBuffer::Destory()
 {
-	m_buffer.Reset();      // ComPtr이 참조 해제
+	//m_buffer.Reset();      // ComPtr이 참조 해제
 	m_device = nullptr;    // 비소유 포인터 초기화
 	m_context = nullptr;
-	m_stride = 0;
-	m_offset = 0;
-	m_count = 0;
+	//m_stride = 0;
+	//m_offset = 0;
+	//m_count = 0;
 }

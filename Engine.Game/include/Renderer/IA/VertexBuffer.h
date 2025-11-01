@@ -9,6 +9,10 @@ namespace NG_Engine
 	class VertexBuffer
 	{
 	public:
+		~VertexBuffer() {
+			Destroy();
+		}
+
 		template <typename T>
 		void Create(DXDevice dx, const std::vector<T>& vertices, const D3D11_USAGE& usage = D3D11_USAGE_DEFAULT);
 		void SetIA(DXDevice dx);

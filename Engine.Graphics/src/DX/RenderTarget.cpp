@@ -5,6 +5,7 @@
 
 using Microsoft::WRL::ComPtr;
 using namespace NG_Engine;
+using namespace Graphics;
 using namespace Common;
 
 bool RenderTarget::CreateFromSwapChain(DXDevice dx, const SwapChain& swap)

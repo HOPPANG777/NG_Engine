@@ -9,6 +9,10 @@ namespace NG_Engine
 	class InputLayout
 	{
 	public:
+		~InputLayout() {
+			Destroy();
+		}
+
 		void Create(DXDevice dx, const D3D11_INPUT_ELEMENT_DESC* desc, const size_t& count, ID3DBlob* blob);
 		void SetIA(DXDevice dx);
 

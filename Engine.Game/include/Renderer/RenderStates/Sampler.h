@@ -1,5 +1,8 @@
 #pragma once
-class Sampler
-{
-};
 
+namespace NG_Engine
+{
+	class Sampler
+	{
+	};
+}

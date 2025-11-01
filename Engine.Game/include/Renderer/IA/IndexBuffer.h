@@ -9,6 +9,10 @@ namespace NG_Engine
 	class IndexBuffer
 	{
 	public:
+		~IndexBuffer() {
+			Destroy();
+		}
+
 		void Create(DXDevice dx, const std::vector<UINT>& indices, const D3D11_USAGE& usage = D3D11_USAGE_DEFAULT);
 		void SetIA(DXDevice dx);
 
