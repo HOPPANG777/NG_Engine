@@ -99,6 +99,11 @@ void Application::OnResize(UINT width, UINT height)
 
 bool Application::OnMsg(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 {
+    UNREFERENCED_PARAMETER(handle);
+    UNREFERENCED_PARAMETER(message);
+    UNREFERENCED_PARAMETER(wParam);
+    UNREFERENCED_PARAMETER(lParam);
+
     return false; // 메세지가 필요할시
 }
 

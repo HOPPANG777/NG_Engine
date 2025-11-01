@@ -8,7 +8,7 @@
 class EngineClient final : public NG_Engine::Application
 {
 public:
-	EngineClient(NG_Engine::Graphics::IGraphicsEngine& graphics, std::wstring baseTitle);
+	EngineClient(NG_Engine::Graphics::IGraphicsEngine& graphics, const std::wstring& baseTitle);
 
 protected:
 	void OnInit() override;

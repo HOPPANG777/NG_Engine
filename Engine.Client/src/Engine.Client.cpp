@@ -32,9 +32,8 @@ namespace
 	}
 }
 
-EngineClient::EngineClient(Graphics::IGraphicsEngine& graphics, std::wstring baseTitle)
-	: Application(graphics)
-	, m_baseTitle(std::move(baseTitle))
+EngineClient::EngineClient(Graphics::IGraphicsEngine& graphics, const std::wstring& baseTitle)
+	: Application(graphics), m_baseTitle(baseTitle)
 {
 	m_lastPresentedFps = std::numeric_limits<std::uint32_t>::max();
 }
