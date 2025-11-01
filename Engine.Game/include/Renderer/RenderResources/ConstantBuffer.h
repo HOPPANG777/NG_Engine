@@ -4,37 +4,36 @@
 #include <wrl/client.h>
 #include <vector>
 
-#include "EngineAPI.h"
-
 namespace NG_Engine
 {
-    class ConstantBuffer
-    {
-    public:
-        void SetVSBuffer(DXDevice dx, UINT slot);
-        void SetPSBuffer(DXDevice dx, UINT slot);
+	class ConstantBuffer
+	{
+	public:
+		void SetVSBuffer(DXDevice dx, const UINT slot);
+		void SetPSBuffer(DXDevice dx, const UINT slot);
 
-    protected:
-        ConstantBuffer(void* data, UINT dataSize);
-        ~ConstantBuffer()
-        {
-            Destroy();
-        }
+	protected:
+		ConstantBuffer(DXDevice dx, void* data, const UINT dataSize);
+		~ConstantBuffer() {
+			Destroy();
+		}
+		
+		void Destory();
 
-        void Destroy();
+	private:
+		void MapData(DXDevice dx, void* data, const UINT dataSize);
 
-    private:
-        void EnsureResource(DXDevice dx);
-        void MapData(const void* data, UINT dataSize);
+	private:
+		ID3D11Device* m_device = nullptr;           // 비소유
+		ID3D11DeviceContext* m_context = nullptr;   // 비소유
 
-    private:
-        ID3D11Device* m_device = nullptr;
-        ID3D11DeviceContext* m_context = nullptr;
+		D3D11_BUFFER_DESC m_desc = { 0 };
+		Microsoft::WRL::ComPtr<ID3D11Buffer> m_buffer;
 
-        D3D11_BUFFER_DESC m_desc{};
-        Microsoft::WRL::ComPtr<ID3D11Buffer> m_buffer;
+		void* m_data;
+		UINT m_dataSize;
 
-        void* m_data = nullptr;
-        UINT m_dataSize = 0;
-    };
+	};
 }
+
+

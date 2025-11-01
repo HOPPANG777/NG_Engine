@@ -6,8 +6,6 @@
 #include <algorithm>
 #include <vector>
 
-#include "EngineAPI.h"
-
 
 namespace NG_Engine
 {
