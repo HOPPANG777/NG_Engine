@@ -120,7 +120,7 @@ int APIENTRY wWinMain(
 	UNREFERENCED_PARAMETER(lpCmdLine);
 	UNREFERENCED_PARAMETER(nCmdShow);
 
-	const std::wstring windowTitle = BuildWindowTitle(L"NGEngine", Engine_GetVersionString());
+	const std::wstring windowTitle = BuildWindowTitle(L"NG_Engine", Engine_GetVersionString());
 
 	if (Engine_Initialize() != Engine::Status::OK)
 	{
