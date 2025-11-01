@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="include\DX\D3D11Device.h" />
+    <ClInclude Include="include\DX\RenderTarget.h" />
+    <ClInclude Include="include\DX\SwapChain.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\DX\D3D11Device.cpp" />
+    <ClCompile Include="src\DX\RenderTarget.cpp" />
+    <ClCompile Include="src\DX\SwapChain.cpp" />
+  </ItemGroup>
+</Project>
