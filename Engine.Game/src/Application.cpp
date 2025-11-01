@@ -35,6 +35,7 @@ bool Application::Initialize(const AppDesc& desc)
     graphicsDesc.width = g_platform.g_width;
     graphicsDesc.height = g_platform.g_height;
     graphicsDesc.vsync = desc.vsync;
+    graphicsDesc.adapterIndex = desc.adapterIndex;
     if (!g_graphics.Initialize(graphicsDesc))
     {
         g_platform.Destroy();
