@@ -5,30 +5,33 @@
 using namespace NG_Engine;
 using namespace Common;
 
-void InputLayout::Create(DXDevice dx, const D3D11_INPUT_ELEMENT_DESC* desc, const size_t& count, ID3DBlob* blob)
+void InputLayout::Create(DXDevice dx, const D3D11_INPUT_ELEMENT_DESC* desc, size_t count, ID3DBlob* blob)
 {
-	m_device = dx.device;
-	m_context = dx.context;
-	CHECK(m_device && m_context);
+    m_device = dx.device;
+    m_context = dx.context;
+    CHECK(m_device && m_context);
+    CHECK(desc && blob);
 
-	HRESULT hr = m_device->CreateInputLayout(
-		desc,
-		UINT(count),
-		blob->GetBufferPointer(),
-		blob->GetBufferSize(),
-		&m_inputLayout
-	);
-	CHECK(hr);
+    HRESULT hr = m_device->CreateInputLayout(
+        desc,
+        static_cast<UINT>(count),
+        blob->GetBufferPointer(),
+        blob->GetBufferSize(),
+        m_inputLayout.GetAddressOf());
+    CHECK(SUCCEEDED(hr));
 }
 
 void InputLayout::SetIA(DXDevice dx)
 {
-	m_context->IASetInputLayout(m_inputLayout.Get());
+    ID3D11DeviceContext* context = dx.context ? dx.context : m_context;
+    CHECK(context);
+
+    context->IASetInputLayout(m_inputLayout.Get());
 }
 
-void InputLayout::Destory()
+void InputLayout::Destroy()
 {
-	//m_inputLayout.Reset();      // ComPtr이 참조 해제
-	m_device = nullptr;    // 비소유 포인터 초기화
-	m_context = nullptr;
+    m_inputLayout.Reset();
+    m_device = nullptr;
+    m_context = nullptr;
 }

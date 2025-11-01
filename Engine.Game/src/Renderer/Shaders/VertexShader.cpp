@@ -5,35 +5,35 @@
 using namespace NG_Engine;
 using namespace Common;
 
-void VertexShader::Create(DXDevice dx, const std::wstring& path, const std::string& entryName) override
+void VertexShader::Create(DXDevice dx, const std::wstring& path, const std::string& entryName)
 {
-	m_device = dx.device;
-	m_context = dx.context;
-	CHECK(m_device && m_context);
+        m_device = dx.device;
+        m_context = dx.context;
+        CHECK(m_device && m_context);
 
 	this->m_path = path;
 	this->m_entryName = entryName;
 
 	CompileShader(path, entryName, "vs_5_0", m_blob.GetAddressOf());
-	HRESULT hr = m_device->CreateVertexShader
-	(
-		m_blob->GetBufferPointer(),
-		m_blob->GetBufferSize(),
-		nullptr,
-		&m_shader
-	);
-	CHECK(hr);
+        HRESULT hr = m_device->CreateVertexShader
+        (
+                m_blob->GetBufferPointer(),
+                m_blob->GetBufferSize(),
+                nullptr,
+                m_shader.GetAddressOf()
+        );
+        CHECK(SUCCEEDED(hr));
 }
 
-void VertexShader::Clear() override
+void VertexShader::Clear()
 {
-	m_shader.Reset();
-	m_blob.Reset();
-	m_device = nullptr;
-	m_context = nullptr;
+        m_shader.Reset();
+        m_blob.Reset();
+        m_device = nullptr;
+        m_context = nullptr;
 }
 
-void VertexShader::SetShader() override
+void VertexShader::SetShader()
 {
-	m_context->VSSetShader(m_shader.Get(), nullptr, 0);
+        m_context->VSSetShader(m_shader.Get(), nullptr, 0);
 }
