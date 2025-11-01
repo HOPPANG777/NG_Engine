@@ -1,12 +1,9 @@
 #pragma once
 #include <string>
-#include "Platform.h"
-#include "Time.h"
+#include "Core/Platform.h"
+#include "Core/Time.h"
 
-// Graphics
-#include "Graphics/DX/D3D11Device.h"
-#include "Graphics/DX/SwapChain.h"
-#include "Graphics/DX/RenderTarget.h"
+#include "EngineAPI.h"
 
 namespace NG_Engine
 {

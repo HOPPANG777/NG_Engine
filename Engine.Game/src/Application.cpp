@@ -19,7 +19,7 @@ bool Application::Initialize(const AppDesc& desc)
 
     if (!g_device.Create()) return false;
 
-    DXDevice dx = g_device.GetDXDevice(g_device);
+    DXDevice dx = g_device.GetDXDevice();
 
     SwapChainDesc scd{};
     scd.hwnd = g_platform.g_handle;
@@ -70,7 +70,7 @@ void Application::OnResize(UINT width, UINT height)
 {
     if (width == 0 || height == 0) return;
 
-    DXDevice dx = g_device.GetDXDevice(g_device);
+    DXDevice dx = g_device.GetDXDevice();
 
     g_backbuffer.Destroy();
     g_swapchain.Resize(width, height);
@@ -79,12 +79,12 @@ void Application::OnResize(UINT width, UINT height)
 
 bool Application::OnMsg(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    return false; // 필요 시 상속 측에서 메시지 소비
+    return false; // 却    聘 捻
 }
 
 void Application::BeginFrame(const float clear[4])
 {
-    DXDevice dx = g_device.GetDXDevice(g_device);
+    DXDevice dx = g_device.GetDXDevice();
 
     g_backbuffer.Bind(dx);
     g_backbuffer.Clear(dx, clear);
