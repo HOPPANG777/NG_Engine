@@ -8,14 +8,14 @@ using namespace Common;
 using namespace ConstantColor;
 
 Application::Application(Graphics::IGraphicsEngine& graphics)
-    : g_graphics(graphics)
+    : m_graphics(graphics)
 {
 
 }
 
 bool Application::Init(const AppDesc& desc)
 {
-    g_desc = desc;
+    m_desc = desc;
 
     WinDesc wd{};
     wd.appName = desc.window.appName;
@@ -24,31 +24,31 @@ bool Application::Init(const AppDesc& desc)
     wd.height = desc.window.height;
     wd.icon = desc.window.icon;
 
-    if (!g_platform.CreateWindowClass(wd)) return false;
-    if (!g_platform.CreateWindowInstance(wd, this)) return false;
-    g_platform.Show();
+    if (!m_platform.CreateWindowClass(wd)) return false;
+    if (!m_platform.CreateWindowInstance(wd, this)) return false;
+    m_platform.Show();
 
-    g_desc.window.handle = g_platform.g_handle;
-    g_desc.window.width = g_platform.g_width;
-    g_desc.window.height = g_platform.g_height;
+    m_desc.window.handle = m_platform.m_handle;
+    m_desc.window.width = m_platform.m_width;
+    m_desc.window.height = m_platform.m_height;
 
-    g_mouse.Init(g_platform.g_handle);
+    m_mouse.Init(m_platform.m_handle);
 
     Graphics::GraphicsInitDesc graphicsDesc{};
-    graphicsDesc.window = g_platform.g_handle;
-    graphicsDesc.width = g_platform.g_width;
-    graphicsDesc.height = g_platform.g_height;
+    graphicsDesc.window = m_platform.m_handle;
+    graphicsDesc.width = m_platform.m_width;
+    graphicsDesc.height = m_platform.m_height;
     graphicsDesc.vsync = desc.vsync;
     graphicsDesc.adapterIndex = desc.adapterIndex;
-    if (!g_graphics.Init(graphicsDesc))
+    if (!m_graphics.Init(graphicsDesc))
     {
-        g_platform.Destroy();
+        m_platform.Destroy();
         return false;
     }
 
     bGraphicsInitialized = true;
 
-    g_time.Reset();
+    m_time.Reset();
     OnInit();
     bRunning = true;
     return true;
@@ -58,13 +58,13 @@ int Application::Run()
 {
     while (bRunning)
     {
-        if (!g_platform.PumpOnce())
+        if (!m_platform.PumpOnce())
         {
             bRunning = false;
             break;
         }
 
-        float dt = g_time.Tick();
+        float dt = m_time.Tick();
 
         OnUpdate(dt);
 
@@ -85,11 +85,11 @@ void Application::Shutdown()
 
     if (bGraphicsInitialized)
     {
-        g_graphics.Shutdown();
+        m_graphics.Shutdown();
         bGraphicsInitialized = false;
     }
 
-    g_platform.Destroy();
+    m_platform.Destroy();
 }
 
 void Application::OnResize(UINT width, UINT height)
@@ -97,16 +97,16 @@ void Application::OnResize(UINT width, UINT height)
     if (width == 0 || height == 0) return;
     if (!bGraphicsInitialized) return;
 
-    g_desc.window.width = width;
-    g_desc.window.height = height;
+    m_desc.window.width = width;
+    m_desc.window.height = height;
 
-    g_graphics.Resize(width, height);
+    m_graphics.Resize(width, height);
 }
 
 bool Application::OnMsg(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 {
     bool handled = false;
-    handled = g_mouse.ProcessMessage(message, wParam, lParam) || handled;
+    handled = m_mouse.ProcessMessage(message, wParam, lParam) || handled;
 
     switch (message)
     {
@@ -117,7 +117,7 @@ bool Application::OnMsg(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_CHAR:
     case WM_SYSCHAR:
     case WM_UNICHAR:
-        handled = g_keyboard.ProcessMessage(message, wParam, lParam) || handled;
+        handled = m_keyboard.ProcessMessage(message, wParam, lParam) || handled;
         break;
     default:
         break;
@@ -130,18 +130,18 @@ void Application::BeginFrame(const float clear[4])
 {
     if (!bGraphicsInitialized) return;
 
-    g_graphics.BeginFrame(clear);
+    m_graphics.BeginFrame(clear);
 }
 
 void Application::EndFrame()
 {
     if (!bGraphicsInitialized) return;
 
-    g_graphics.EndFrame(g_desc.vsync);
+    m_graphics.EndFrame(m_desc.vsync);
 }
 
 void Application::UpdateInputDevices()
 {
-    g_keyboard.Update();
-    g_mouse.Update();
+    m_keyboard.Update();
+    m_mouse.Update();
 }

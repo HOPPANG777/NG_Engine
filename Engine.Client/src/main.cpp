@@ -41,9 +41,9 @@ void EngineClient::OnInit()
 	m_titleTimer = 0.0f;
 	m_presentedTitle = m_baseTitle;
 
-	if (g_desc.window.handle)
+	if (m_desc.window.handle)
 	{
-		SetWindowTextW(g_desc.window.handle, m_presentedTitle.c_str());
+		SetWindowTextW(m_desc.window.handle, m_presentedTitle.c_str());
 	}
 
 	std::wstring debugMessage = L"[Engine.Client] Initialized window: ";
@@ -54,8 +54,6 @@ void EngineClient::OnInit()
 
 void EngineClient::OnUpdate(float dt)
 {
-	UpdateInputDevices();
-
 	m_titleTimer += dt;
 	if (m_titleTimer < 0.25f)
 	{
@@ -63,7 +61,7 @@ void EngineClient::OnUpdate(float dt)
 	}
 	m_titleTimer = 0.0f;
 
-	const std::uint32_t fps = g_time.GetFPS();
+	const std::uint32_t fps = m_time.GetFPS();
 
 	std::wstring newTitle = m_baseTitle;
 	newTitle.append(L" | FPS: ");
@@ -76,10 +74,10 @@ void EngineClient::OnUpdate(float dt)
 		newTitle.append(std::to_wstring(fps));
 	}
 
-	if (newTitle != m_presentedTitle && g_desc.window.handle)
+	if (newTitle != m_presentedTitle && m_desc.window.handle)
 	{
 		m_presentedTitle = std::move(newTitle);
-		SetWindowTextW(g_desc.window.handle, m_presentedTitle.c_str());
+		SetWindowTextW(m_desc.window.handle, m_presentedTitle.c_str());
 	}
 }
 

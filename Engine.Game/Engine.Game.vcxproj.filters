@@ -52,6 +52,10 @@
     <ClCompile Include="src\Renderer\2D\SpriteBatch2D.cpp">
       <Filter>src\Renderer\2D</Filter>
     </ClCompile>
+    <ClCompile Include="src\ECS\Components\Component.cpp" />
+    <ClCompile Include="src\ECS\Components\Transform.cpp" />
+    <ClCompile Include="src\ECS\Components\RectTransform.cpp" />
+    <ClCompile Include="src\ECS\Objects\Object.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Application.h">
@@ -105,6 +109,10 @@
     <ClInclude Include="include\Renderer\2D\SpriteBatch2D.h">
       <Filter>include\Renderer\2D</Filter>
     </ClInclude>
+    <ClInclude Include="include\ECS\Components\Component.h" />
+    <ClInclude Include="include\ECS\Objects\Object.h" />
+    <ClInclude Include="include\ECS\Components\Transform.h" />
+    <ClInclude Include="include\ECS\Components\RectTransform.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -149,5 +157,8 @@
     <Filter Include="src\Renderer\RenderResources">
       <UniqueIdentifier>{ae76114f-78ea-472c-b48e-4dd6b653bde4}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="include\ECS\Objects\Object.inl" />
   </ItemGroup>
 </Project>

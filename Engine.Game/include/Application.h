@@ -41,23 +41,23 @@ namespace NG_Engine
 
     protected:
         void UpdateInputDevices();
-        Keyboard& GetKeyboard() { return g_keyboard; }
-        const Keyboard& GetKeyboard() const { return g_keyboard; }
-        Mouse& GetMouse() { return g_mouse; }
-        const Mouse& GetMouse() const { return g_mouse; }
+        Keyboard& GetKeyboard() { return m_keyboard; }
+        const Keyboard& GetKeyboard() const { return m_keyboard; }
+        Mouse& GetMouse() { return m_mouse; }
+        const Mouse& GetMouse() const { return m_mouse; }
 
     protected:
         void BeginFrame(const float clear[4]);
         void EndFrame();
 
     protected:
-        AppDesc      g_desc;
-        Platform     g_platform;
-        Time         g_time;
-        Keyboard     g_keyboard;
-        Mouse        g_mouse;
+        AppDesc      m_desc;
+        Platform     m_platform;
+        Time         m_time;
+        Keyboard     m_keyboard;
+        Mouse        m_mouse;
 
-        Graphics::IGraphicsEngine& g_graphics;
+        Graphics::IGraphicsEngine& m_graphics;
         bool         bRunning = false;
         bool         bGraphicsInitialized = false;
     };

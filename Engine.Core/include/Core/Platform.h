@@ -38,12 +38,12 @@ namespace NG_Engine
 		       LRESULT			WndProc(HWND handle, UINT message, WPARAM wParam, LPARAM lParam);
 
 	public:
-		IWinEvents*		g_events = nullptr;
-		HINSTANCE		g_instance = nullptr;
-		HWND			g_handle = nullptr;
-		UINT			g_width = 0;
-		UINT			g_height = 0;
-		bool			g_minimized = false;
+		IWinEvents*		m_events = nullptr;
+		HINSTANCE		m_instance = nullptr;
+		HWND			m_handle = nullptr;
+		UINT			m_width = 0;
+		UINT			m_height = 0;
+		bool			m_minimized = false;
 
 	};
 } // namespace NG_Engine

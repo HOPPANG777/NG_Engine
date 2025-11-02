@@ -42,6 +42,8 @@
     <ClInclude Include="include\ConstantVector.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Screen.h" />
+    <ClInclude Include="include\UI.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">

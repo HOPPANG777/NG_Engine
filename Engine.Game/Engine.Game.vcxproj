@@ -20,6 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\ECS\Components\Component.cpp" />
+    <ClCompile Include="src\ECS\Components\RectTransform.cpp" />
+    <ClCompile Include="src\ECS\Components\Transform.cpp" />
+    <ClCompile Include="src\ECS\Objects\Object.cpp" />
     <ClCompile Include="src\EngineAPI.cpp" />
     <ClCompile Include="src\Renderer\2D\SpriteBatch2D.cpp" />
     <ClCompile Include="src\Renderer\IA\IndexBuffer.cpp" />
@@ -39,6 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Application.h" />
+    <ClInclude Include="include\ECS\Components\Component.h" />
+    <ClInclude Include="include\ECS\Objects\Object.h" />
+    <ClInclude Include="include\ECS\Components\RectTransform.h" />
+    <ClInclude Include="include\ECS\Components\Transform.h" />
     <ClInclude Include="include\EngineAPI.h" />
     <ClInclude Include="include\Renderer\2D\SpriteBatch2D.h" />
     <ClInclude Include="include\Renderer\IA\IndexBuffer.h" />
@@ -55,6 +63,9 @@
     <ClInclude Include="include\Renderer\Shaders\IShader.h" />
     <ClInclude Include="include\Renderer\Shaders\PixelShader.h" />
     <ClInclude Include="include\Renderer\Shaders\VertexShader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="include\ECS\Objects\Object.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
