@@ -9,6 +9,7 @@ namespace NG_Engine
 {
     namespace Graphics
     {
+
         class D3D11GraphicsEngine final : public IGraphicsEngine
         {
         public:
@@ -22,6 +23,9 @@ namespace NG_Engine
             void EndFrame(bool vsync) override;
 
             void Resize(UINT width, UINT height) override;
+
+            DXDevice GetDXDevice() const override { return m_device.GetDXDevice(); }
+
 
         private:
             GraphicsInitDesc m_desc{};

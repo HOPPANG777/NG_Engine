@@ -1,21 +1,31 @@
 #include "Debug/NEGUI.h"
 
-using namespace NG_Engine;
-
 #include <imgui.h>
 #include <imgui_impl_win32.h>
 #include <imgui_impl_dx11.h>
+
+using namespace NG_Engine;
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 bool NEGUI::ProcessMessage(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	// ImGui가 메시지를 처리한 경우
+	if (!m_initialized)
+	{
+		return false;
+	}
+
 	return ImGui_ImplWin32_WndProcHandler(handle, message, wParam, lParam);
 }
 
 void NEGUI::Init(HWND handle, Graphics::DXDevice dx)
 {
+	if (m_initialized)
+	{
+		return;
+	}
+
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 
@@ -33,19 +43,36 @@ void NEGUI::Init(HWND handle, Graphics::DXDevice dx)
 
 void NEGUI::Shutdown()
 {
+	if (!m_initialized)
+	{
+		return;
+	}
+
 	ImGui_ImplDX11_Shutdown();
 	ImGui_ImplWin32_Shutdown();
 	ImGui::DestroyContext();
+
+	m_initialized = false;
 }
 
 void NEGUI::Resize()
 {
+	if (!m_initialized)
+	{
+		return;
+	}
+
 	ImGui_ImplDX11_InvalidateDeviceObjects();
 	ImGui_ImplDX11_CreateDeviceObjects();
 }
 
 void NEGUI::Update()
 {
+	if (!m_initialized)
+	{
+		return;
+	}
+
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
@@ -53,6 +80,11 @@ void NEGUI::Update()
 
 void NEGUI::Render()
 {
+	if (!m_initialized)
+	{
+		return;
+	}
+
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 

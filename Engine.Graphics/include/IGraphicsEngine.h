@@ -6,6 +6,8 @@ namespace NG_Engine
 {
     namespace Graphics
     {
+        struct DXDevice;
+
         struct GraphicsInitDesc
         {
             HWND window = nullptr;
@@ -27,6 +29,8 @@ namespace NG_Engine
             virtual void EndFrame(bool vsync) = 0;
 
             virtual void Resize(UINT width, UINT height) = 0;
+        
+            virtual DXDevice GetDXDevice() const = 0;
         };
     }
 }

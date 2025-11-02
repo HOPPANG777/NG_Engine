@@ -49,6 +49,7 @@ bool Application::Init(const AppDesc& desc)
     bGraphicsInitialized = true;
 
     m_time.Reset();
+    m_gui.Init(m_desc.window.handle, m_graphics.GetDXDevice());
     OnInit();
     bRunning = true;
     //m_gui.Init(m_desc.window.handle, );
@@ -96,8 +97,10 @@ int Application::Run()
         OnPostRender();
         g_sceneManager.PostRender();
 
+        m_gui.Update();
         OnGUI();
         g_sceneManager.GUI();
+        m_gui.Render();
         EndFrame();
     }
 
@@ -112,6 +115,8 @@ void Application::Shutdown()
     OnShutdown();
 
     g_sceneManager.Shutdown();
+    
+    m_gui.Shutdown();
 
     if (bGraphicsInitialized)
     {
@@ -131,11 +136,13 @@ void Application::OnResize(UINT width, UINT height)
     m_desc.window.height = height;
 
     m_graphics.Resize(width, height);
+    m_gui.Resize();
 }
 
 bool Application::OnMsg(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 {
     bool handled = false;
+    handled = m_gui.ProcessMessage(handle, message, wParam, lParam) || handled;
     handled = m_mouse.ProcessMessage(message, wParam, lParam) || handled;
 
     switch (message)

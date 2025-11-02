@@ -30,5 +30,8 @@ namespace NG_Engine
 	private:
 		void ApplyStyle();
 
+	private:
+		bool m_initialized = false;
+	
 	};
 }
