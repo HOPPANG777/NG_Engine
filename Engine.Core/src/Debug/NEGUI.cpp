@@ -39,6 +39,8 @@ void NEGUI::Init(HWND handle, Graphics::DXDevice dx)
 
 	ImGui::StyleColorsDark();
 	//ApplyStyle();
+
+	m_initialized = true;
 }
 
 void NEGUI::Shutdown()
