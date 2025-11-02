@@ -2,6 +2,8 @@
 
 #include "Common.h"
 
+#include <imgui.h>
+
 using namespace NG_Engine;
 using namespace Graphics;
 
@@ -37,6 +39,24 @@ bool D3D11GraphicsEngine::Init(const GraphicsInitDesc& desc)
 
     m_initialized = true;
     m_desc.adapterIndex = m_device.GetSelectedAdapterIndex();
+
+    if (ImGui::GetCurrentContext() == nullptr)
+    {
+        IMGUI_CHECKVERSION();
+        m_imguiContext = ImGui::CreateContext();
+        m_ownsImGuiContext = true;
+    }
+    else
+    {
+        m_imguiContext = ImGui::GetCurrentContext();
+        m_ownsImGuiContext = false;
+    }
+
+    if (m_imguiContext != nullptr)
+    {
+        ImGui::SetCurrentContext(m_imguiContext);
+    }
+
     return true;
 }
 
@@ -47,6 +67,14 @@ void D3D11GraphicsEngine::Shutdown()
     m_backBuffer.Destroy();
     m_swapChain.Destroy();
     m_device.Destroy();
+
+    if (m_ownsImGuiContext && m_imguiContext != nullptr)
+    {
+        ImGui::DestroyContext(m_imguiContext);
+    }
+
+    m_imguiContext = nullptr;
+    m_ownsImGuiContext = false;
 
     m_initialized = false;
 }

@@ -8,9 +8,9 @@ using namespace NG_Engine;
 
 namespace
 {
-    inline ImGuiIO& GetImGuiIO()
+    inline ImGuiIO* TryGetImGuiIO()
     {
-        return ImGui::GetIO();
+        return ImGui::GetCurrentContext() != nullptr ? &ImGui::GetIO() : nullptr;
     }
 }
 
@@ -18,8 +18,8 @@ void Keyboard::Update()
 {
     m_previousKeyState = m_keyState;
 
-    ImGuiIO& io = GetImGuiIO();
-    if (io.WantCaptureKeyboard || io.WantTextInput)
+    ImGuiIO* io = TryGetImGuiIO();
+    if (io != nullptr && (io->WantCaptureKeyboard || io->WantTextInput))
     {
         m_keyState.fill(0);
 
@@ -75,8 +75,8 @@ bool Keyboard::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
     UNREFERENCED_PARAMETER(wParam);
     UNREFERENCED_PARAMETER(lParam);
 
-    const ImGuiIO& io = GetImGuiIO();
-    if (io.WantCaptureKeyboard || io.WantTextInput)
+    ImGuiIO* io = TryGetImGuiIO();
+    if (io != nullptr && (io->WantCaptureKeyboard || io->WantTextInput))
     {
         return true;
     }

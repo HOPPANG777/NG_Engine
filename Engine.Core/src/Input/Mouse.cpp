@@ -12,9 +12,9 @@ using DirectX::SimpleMath::Vector3;
 
 namespace
 {
-    inline ImGuiIO& GetImGuiIO()
+    inline ImGuiIO* TryGetImGuiIO()
     {
-        return ImGui::GetIO();
+        return ImGui::GetCurrentContext() != nullptr ? &ImGui::GetIO() : nullptr;
     }
 
     constexpr std::uint8_t GetAsyncButtonState(int virtualKey)
@@ -57,8 +57,8 @@ void Mouse::Update()
     m_previousWheelPosition = m_wheelPosition;
     m_wheelDelta = ZeroVector3;
 
-    ImGuiIO& io = GetImGuiIO();
-    if (io.WantCaptureMouse)
+    ImGuiIO* io = TryGetImGuiIO();
+    if (io != nullptr && io->WantCaptureMouse)
     {
         m_buttonState.fill(0);
 
@@ -122,7 +122,7 @@ void Mouse::Update()
 
 bool Mouse::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
 {
-    const ImGuiIO& io = GetImGuiIO();
+    ImGuiIO* io = TryGetImGuiIO();
     bool handled = false;
 
     switch (message)
@@ -154,14 +154,14 @@ bool Mouse::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
         {
             m_mousePosition.y = static_cast<float>(GET_Y_LPARAM(lParam));
         }
-        handled = io.WantCaptureMouse;
+        handled = io != nullptr && io->WantCaptureMouse;
         break;
     }
     case WM_MOUSEWHEEL:
     {
         const short wheelDelta = static_cast<short>(HIWORD(wParam));
         m_wheelPosition.z += static_cast<float>(wheelDelta);
-        handled = io.WantCaptureMouse;
+        handled = io != nullptr && io->WantCaptureMouse;
         break;
     }
     default:

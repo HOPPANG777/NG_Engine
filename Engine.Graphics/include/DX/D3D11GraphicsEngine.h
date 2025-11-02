@@ -5,6 +5,8 @@
 #include "SwapChain.h"
 #include "RenderTarget.h"
 
+struct ImGuiContext;
+
 namespace NG_Engine
 {
     namespace Graphics
@@ -33,6 +35,8 @@ namespace NG_Engine
             SwapChain m_swapChain;
             RenderTarget m_backBuffer;
             bool m_initialized = false;
+            ::ImGuiContext* m_imguiContext = nullptr;
+            bool m_ownsImGuiContext = false;
 
         };
     }
