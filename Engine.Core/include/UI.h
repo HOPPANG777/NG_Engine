@@ -4,14 +4,14 @@
 
 namespace UI
 {
-	constexpr int WIN_DEFAULT_WIDTH = 1920;
-	constexpr int WIN_DEFAULT_HEIGHT = 1080;
+	//constexpr int WIN_DEFAULT_WIDTH = 1920;
+	//constexpr int WIN_DEFAULT_HEIGHT = 1080;
 
 	int g_WinWidth = GetSystemMetrics(SM_CXVIRTUALSCREEN);
 	int	g_WinHeight = GetSystemMetrics(SM_CYVIRTUALSCREEN);
 
-	static float referenceWidth = WIN_DEFAULT_WIDTH;
-	static float referenceHeight = WIN_DEFAULT_HEIGHT;
+	static float referenceWidth = g_WinWidth;
+	static float referenceHeight = g_WinHeight;
 
 	static void SetReferenceResolution(float width, float height)
 	{

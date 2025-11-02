@@ -14,6 +14,10 @@ namespace NG_Engine
 	class NEGUI
 	{
 	public:
+		NEGUI() = default;
+		~NEGUI() = default;
+
+	public:
 		void Init(HWND handle, Graphics::DXDevice dx);
 		void Shutdown();
 

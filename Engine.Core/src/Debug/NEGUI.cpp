@@ -14,16 +14,6 @@ bool NEGUI::ProcessMessage(HWND handle, UINT message, WPARAM wParam, LPARAM lPar
 	return ImGui_ImplWin32_WndProcHandler(handle, message, wParam, lParam);
 }
 
-NEGUI::NEGUI()
-{
-	
-}
-
-NEGUI::~NEGUI()
-{
-
-}
-
 void NEGUI::Init(HWND handle, Graphics::DXDevice dx)
 {
 	IMGUI_CHECKVERSION();
