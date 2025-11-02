@@ -8,10 +8,8 @@ namespace NG_Engine
 
     class Component
     {
-    protected:
-        explicit Component(const std::string& compName);
-
     public:
+        explicit Component(const std::string& compName);
         virtual ~Component() = default;
 
         Component(const Component&) = delete;
@@ -21,7 +19,7 @@ namespace NG_Engine
 
     public:
         Object* GetOwner() const { return m_owner; }
-        const std::string& GetName() const { return m_name; }
+        std::string GetName() const { return m_name; }
 
         void SetOwner(Object* obj) { m_owner = obj; }
 

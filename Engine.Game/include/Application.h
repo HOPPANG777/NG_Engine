@@ -4,6 +4,7 @@
 #include "Core/Time.h"
 #include "Input/Keyboard.h"
 #include "Input/Mouse.h"
+#include "Managers/SceneManager/SceneManager.h"
 
 namespace NG_Engine
 {
@@ -35,8 +36,12 @@ namespace NG_Engine
 
     protected: // hooks
         virtual void OnInit() {}
+        virtual void OnFixedUpdate(float fixedDt) {}
         virtual void OnUpdate(float dt) = 0;
+        virtual void OnLateUpdate(float dt) {}
         virtual void OnRender() = 0;
+        virtual void OnPostRender() {}
+        virtual void OnGUI() {}
         virtual void OnShutdown() {}
 
     protected:
@@ -45,6 +50,12 @@ namespace NG_Engine
         const Keyboard& GetKeyboard() const { return m_keyboard; }
         Mouse& GetMouse() { return m_mouse; }
         const Mouse& GetMouse() const { return m_mouse; }
+
+    protected:
+        SceneManager& GetSceneManager() { return g_sceneManager; }
+        const SceneManager& GetSceneManager() const { return g_sceneManager; }
+        void SetFixedTimeStep(float fixedDt);
+        float GetFixedTimeStep() const { return g_fixedTimeStep; }
 
     protected:
         void BeginFrame(const float clear[4]);
@@ -60,5 +71,8 @@ namespace NG_Engine
         Graphics::IGraphicsEngine& m_graphics;
         bool         bRunning = false;
         bool         bGraphicsInitialized = false;
+        SceneManager g_sceneManager;
+        float        g_fixedTimeStep = 1.0f / 60.0f;
+        float        g_fixedAccumulator = 0.0f;
     };
 } // namespace NG_Engine

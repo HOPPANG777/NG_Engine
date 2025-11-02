@@ -19,12 +19,12 @@ Object::Object(const std::string& name, bool rectTransformType)
 {
     if (bRectTransformType)
     {
-        const std::shared_ptr<RectTransform> rectTransform = std::make_shared<RectTransform>();
+        const std::shared_ptr<RectTransform>& rectTransform = std::make_shared<RectTransform>();
         this->AddComponent(rectTransform);
     }
     else
     {
-        const std::shared_ptr<Transform> transform = std::make_shared<Transform>();
+        const std::shared_ptr<Transform>& transform = std::make_shared<Transform>();
         this->AddComponent(transform);
     }
 }
@@ -40,7 +40,7 @@ Object::Object(
 {
     if (bRectTransformType)
     {
-        const std::shared_ptr<RectTransform> rectTransform = GetComponent<RectTransform>(kRectTransformName);
+        const std::shared_ptr<RectTransform>& rectTransform = GetComponent<RectTransform>(kRectTransformName);
         if (rectTransform)
         {
             rectTransform->SetPosition(initPos);
@@ -50,7 +50,7 @@ Object::Object(
     }
     else
     {
-        const std::shared_ptr<Transform> transform = GetComponent<Transform>(kTransformName);
+        const std::shared_ptr<Transform>& transform = GetComponent<Transform>(kTransformName);
         if (transform)
         {
             transform->SetPosition(initPos);
@@ -218,7 +218,7 @@ void Object::UpdateWorldBuffer()
 
     if (bRectTransformType)
     {
-        const std::shared_ptr<RectTransform> rectTransform = GetRectTransform();
+        const std::shared_ptr<RectTransform>& rectTransform = GetRectTransform();
         if (rectTransform)
         {
             m_worldBuffer->SetWorld(rectTransform->GetWorld());
@@ -226,7 +226,7 @@ void Object::UpdateWorldBuffer()
         }
     }
 
-    const std::shared_ptr<Transform> transform = GetTransform();
+    const std::shared_ptr<Transform>& transform = GetTransform();
     if (transform)
     {
         m_worldBuffer->SetWorld(transform->GetWorld());

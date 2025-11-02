@@ -66,10 +66,37 @@ int Application::Run()
 
         float dt = m_time.Tick();
 
+        UpdateInputDevices();
+
+        g_sceneManager.PrepareActiveScene();
+
+        if (g_fixedTimeStep > 0.0f)
+        {
+            g_fixedAccumulator += dt;
+            while (g_fixedAccumulator >= g_fixedTimeStep)
+            {
+                OnFixedUpdate(g_fixedTimeStep);
+                g_sceneManager.FixedUpdate();
+                g_fixedAccumulator -= g_fixedTimeStep;
+            }
+        }
+
         OnUpdate(dt);
+
+        g_sceneManager.Update();
+
+        OnLateUpdate(dt);
+        g_sceneManager.LateUpdate();
 
         BeginFrame(Gray);
         OnRender();
+        g_sceneManager.Render();
+
+        OnPostRender();
+        g_sceneManager.PostRender();
+
+        OnGUI();
+        g_sceneManager.GUI();
         EndFrame();
     }
 
@@ -82,6 +109,8 @@ void Application::Shutdown()
     bRunning = false;
 
     OnShutdown();
+
+    g_sceneManager.Shutdown();
 
     if (bGraphicsInitialized)
     {
@@ -144,4 +173,15 @@ void Application::UpdateInputDevices()
 {
     m_keyboard.Update();
     m_mouse.Update();
+}
+
+void Application::SetFixedTimeStep(float fixedDt)
+{
+    if (fixedDt <= 0.0f)
+    {
+        return;
+    }
+
+    g_fixedTimeStep = fixedDt;
+    g_fixedAccumulator = 0.0f;
 }

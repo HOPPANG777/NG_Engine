@@ -25,6 +25,7 @@
     <ClCompile Include="src\ECS\Components\Transform.cpp" />
     <ClCompile Include="src\ECS\Objects\Object.cpp" />
     <ClCompile Include="src\EngineAPI.cpp" />
+    <ClCompile Include="src\Managers\SceneManager\SceneManager.cpp" />
     <ClCompile Include="src\Renderer\2D\SpriteBatch2D.cpp" />
     <ClCompile Include="src\Renderer\IA\IndexBuffer.cpp" />
     <ClCompile Include="src\Renderer\IA\InputLayout.cpp" />
@@ -48,6 +49,8 @@
     <ClInclude Include="include\ECS\Components\RectTransform.h" />
     <ClInclude Include="include\ECS\Components\Transform.h" />
     <ClInclude Include="include\EngineAPI.h" />
+    <ClInclude Include="include\Interfaces\IScene.h" />
+    <ClInclude Include="include\Managers\SceneManager\SceneManager.h" />
     <ClInclude Include="include\Renderer\2D\SpriteBatch2D.h" />
     <ClInclude Include="include\Renderer\IA\IndexBuffer.h" />
     <ClInclude Include="include\Renderer\IA\InputLayout.h" />
