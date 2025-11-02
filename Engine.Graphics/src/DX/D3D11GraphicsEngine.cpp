@@ -5,7 +5,7 @@
 using namespace NG_Engine;
 using namespace Graphics;
 
-bool D3D11GraphicsEngine::Initialize(const GraphicsInitDesc& desc)
+bool D3D11GraphicsEngine::Init(const GraphicsInitDesc& desc)
 {
     m_desc = desc;
 

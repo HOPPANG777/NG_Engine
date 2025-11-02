@@ -36,6 +36,9 @@
     <ClInclude Include="include\Input\Mouse.h">
       <Filter>include\Input</Filter>
     </ClInclude>
+    <ClInclude Include="include\ConstantColor.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">

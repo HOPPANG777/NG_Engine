@@ -54,6 +54,8 @@ void EngineClient::OnInit()
 
 void EngineClient::OnUpdate(float dt)
 {
+	UpdateInputDevices();
+
 	m_titleTimer += dt;
 	if (m_titleTimer < 0.25f)
 	{
@@ -94,8 +96,11 @@ void EngineClient::OnShutdown()
 
 bool EngineClient::OnMsg(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	if (NG_Engine::Application::OnMsg(handle, message, wParam, lParam))
+	{
+		return true;
+	}
 
-	UNREFERENCED_PARAMETER(handle);
 	UNREFERENCED_PARAMETER(lParam);
 
 	if (message == WM_KEYDOWN && wParam == VK_ESCAPE)
@@ -143,7 +148,7 @@ int APIENTRY wWinMain(
 		desc.window.icon = LoadIconW(hInstance, MAKEINTRESOURCE(IDI_HO));
 		desc.vsync = true;
 
-		if (!clientApp.Initialize(desc))
+		if (!clientApp.Init(desc))
 		{
 			MessageBoxW(nullptr, L"Failed to initialize the client application.", windowTitle.c_str(), MB_OK | MB_ICONERROR);
 		}

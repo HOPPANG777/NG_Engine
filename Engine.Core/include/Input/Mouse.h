@@ -20,7 +20,7 @@ namespace NG_Engine
 		Mouse();
 		~Mouse() = default;
 
-		void Initialize(HWND handle);
+		void Init(HWND handle);
 		void SetWindowHandle(HWND handle);
 
 		void Update();

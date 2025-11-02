@@ -69,6 +69,21 @@ void Keyboard::Update()
     }
 }
 
+bool Keyboard::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
+{
+    UNREFERENCED_PARAMETER(message);
+    UNREFERENCED_PARAMETER(wParam);
+    UNREFERENCED_PARAMETER(lParam);
+
+    const ImGuiIO& io = GetImGuiIO();
+    if (io.WantCaptureKeyboard || io.WantTextInput)
+    {
+        return true;
+    }
+
+    return false;
+}
+
 bool Keyboard::Down(DWORD key) const
 {
     if (key >= MaxKeyCount)

@@ -1,9 +1,11 @@
 ﻿#include "Application.h"
 #include "IGraphicsEngine.h"
 #include "Common.h"
+#include "ConstantColor.h"
 
 using namespace NG_Engine;
 using namespace Common;
+using namespace ConstantColor;
 
 Application::Application(Graphics::IGraphicsEngine& graphics)
     : g_graphics(graphics)
@@ -11,7 +13,7 @@ Application::Application(Graphics::IGraphicsEngine& graphics)
 
 }
 
-bool Application::Initialize(const AppDesc& desc)
+bool Application::Init(const AppDesc& desc)
 {
     g_desc = desc;
 
@@ -30,13 +32,15 @@ bool Application::Initialize(const AppDesc& desc)
     g_desc.window.width = g_platform.g_width;
     g_desc.window.height = g_platform.g_height;
 
+    g_mouse.Init(g_platform.g_handle);
+
     Graphics::GraphicsInitDesc graphicsDesc{};
     graphicsDesc.window = g_platform.g_handle;
     graphicsDesc.width = g_platform.g_width;
     graphicsDesc.height = g_platform.g_height;
     graphicsDesc.vsync = desc.vsync;
     graphicsDesc.adapterIndex = desc.adapterIndex;
-    if (!g_graphics.Initialize(graphicsDesc))
+    if (!g_graphics.Init(graphicsDesc))
     {
         g_platform.Destroy();
         return false;
@@ -101,12 +105,25 @@ void Application::OnResize(UINT width, UINT height)
 
 bool Application::OnMsg(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    UNREFERENCED_PARAMETER(handle);
-    UNREFERENCED_PARAMETER(message);
-    UNREFERENCED_PARAMETER(wParam);
-    UNREFERENCED_PARAMETER(lParam);
+    bool handled = false;
+    handled = g_mouse.ProcessMessage(message, wParam, lParam) || handled;
 
-    return false; // 메세지가 필요할시
+    switch (message)
+    {
+    case WM_KEYDOWN:
+    case WM_KEYUP:
+    case WM_SYSKEYDOWN:
+    case WM_SYSKEYUP:
+    case WM_CHAR:
+    case WM_SYSCHAR:
+    case WM_UNICHAR:
+        handled = g_keyboard.ProcessMessage(message, wParam, lParam) || handled;
+        break;
+    default:
+        break;
+    }
+
+    return handled;
 }
 
 void Application::BeginFrame(const float clear[4])
@@ -121,4 +138,10 @@ void Application::EndFrame()
     if (!bGraphicsInitialized) return;
 
     g_graphics.EndFrame(g_desc.vsync);
+}
+
+void Application::UpdateInputDevices()
+{
+    g_keyboard.Update();
+    g_mouse.Update();
 }

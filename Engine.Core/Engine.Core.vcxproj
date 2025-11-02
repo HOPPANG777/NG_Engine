@@ -95,7 +95,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;../;include/;src/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../;include/;../Engine.Game/include;../Engine.Graphics/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -111,7 +111,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;../;include/;src/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../;include/;../Engine.Game/include;../Engine.Graphics/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -125,7 +125,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;../;include/;src/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../;include/;../Engine.Game/include;../Engine.Graphics/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -141,7 +141,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;../;include/;src/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../;include/;../Engine.Game/include;../Engine.Graphics/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -157,6 +157,7 @@
     <ClCompile Include="src\Input\Mouse.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\ConstantColor.h" />
     <ClInclude Include="include\Common.h" />
     <ClInclude Include="include\Core\FileSystem.h" />
     <ClInclude Include="include\Core\Platform.h" />

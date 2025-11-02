@@ -2,6 +2,8 @@
 #include <string>
 #include "Core/Platform.h"
 #include "Core/Time.h"
+#include "Input/Keyboard.h"
+#include "Input/Mouse.h"
 
 namespace NG_Engine
 {
@@ -23,7 +25,7 @@ namespace NG_Engine
         explicit Application(Graphics::IGraphicsEngine& graphics);
         virtual ~Application() = default;
 
-        bool Initialize(const AppDesc& desc);
+        bool Init(const AppDesc& desc);
         int  Run();
         void Shutdown();
 
@@ -38,6 +40,13 @@ namespace NG_Engine
         virtual void OnShutdown() {}
 
     protected:
+        void UpdateInputDevices();
+        Keyboard& GetKeyboard() { return g_keyboard; }
+        const Keyboard& GetKeyboard() const { return g_keyboard; }
+        Mouse& GetMouse() { return g_mouse; }
+        const Mouse& GetMouse() const { return g_mouse; }
+
+    protected:
         void BeginFrame(const float clear[4]);
         void EndFrame();
 
@@ -45,6 +54,8 @@ namespace NG_Engine
         AppDesc      g_desc;
         Platform     g_platform;
         Time         g_time;
+        Keyboard     g_keyboard;
+        Mouse        g_mouse;
 
         Graphics::IGraphicsEngine& g_graphics;
         bool         bRunning = false;

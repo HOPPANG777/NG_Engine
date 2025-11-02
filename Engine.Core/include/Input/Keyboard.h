@@ -18,6 +18,7 @@ namespace NG_Engine
 		~Keyboard() = default;
 
 		void Update();
+		bool ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
 		bool Down(DWORD key) const;
 		bool Up(DWORD key) const;

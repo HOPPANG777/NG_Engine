@@ -23,10 +23,10 @@ namespace
 
 Mouse::Mouse()
 {
-    Initialize(nullptr);
+    Init(nullptr);
 }
 
-void Mouse::Initialize(HWND handle)
+void Mouse::Init(HWND handle)
 {
     m_windowHandle = handle;
 
@@ -120,6 +120,9 @@ void Mouse::Update()
 
 bool Mouse::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
 {
+    const ImGuiIO& io = GetImGuiIO();
+    bool handled = false;
+
     switch (message)
     {
     case WM_MOUSEMOVE:
@@ -149,19 +152,21 @@ bool Mouse::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
         {
             m_mousePosition.y = static_cast<float>(GET_Y_LPARAM(lParam));
         }
+        handled = io.WantCaptureMouse;
         break;
     }
     case WM_MOUSEWHEEL:
     {
         const short wheelDelta = static_cast<short>(HIWORD(wParam));
         m_wheelPosition.z += static_cast<float>(wheelDelta);
+        handled = io.WantCaptureMouse;
         break;
     }
     default:
-        break;
+        return false;
     }
 
-    return true;
+    return handled;
 }
 
 bool Mouse::Down(DWORD button) const

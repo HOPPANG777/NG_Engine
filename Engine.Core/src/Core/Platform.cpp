@@ -70,6 +70,9 @@ bool Platform::PumpOnce()
     {
         if (msg.message == WM_QUIT) return false;
         TranslateMessage(&msg);
+
+        
+
         DispatchMessageW(&msg);
     }
     return true;

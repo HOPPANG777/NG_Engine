@@ -20,7 +20,7 @@ namespace NG_Engine
         public:
             virtual ~IGraphicsEngine() = default;
 
-            virtual bool Initialize(const GraphicsInitDesc& desc) = 0;
+            virtual bool Init(const GraphicsInitDesc& desc) = 0;
             virtual void Shutdown() = 0;
 
             virtual void BeginFrame(const float clearColor[4]) = 0;

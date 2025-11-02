@@ -15,7 +15,7 @@ namespace NG_Engine
             D3D11GraphicsEngine() = default;
             ~D3D11GraphicsEngine() override = default;
 
-            bool Initialize(const GraphicsInitDesc& desc) override;
+            bool Init(const GraphicsInitDesc& desc) override;
             void Shutdown() override;
 
             void BeginFrame(const float clearColor[4]) override;
