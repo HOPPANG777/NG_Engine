@@ -51,6 +51,7 @@ bool Application::Init(const AppDesc& desc)
     m_time.Reset();
     OnInit();
     bRunning = true;
+    m_gui.Init(m_desc.window.handle, );
     return true;
 }
 

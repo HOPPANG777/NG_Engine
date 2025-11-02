@@ -17,6 +17,22 @@ namespace
     constexpr float kMaxAnchor = 1.0f;
 }
 
+void RectTransform::Awake()
+{
+}
+
+void RectTransform::Start()
+{
+}
+
+void RectTransform::Destroy()
+{
+}
+
+void RectTransform::FixedUpdate()
+{
+}
+
 void RectTransform::Update()
 {
     using namespace DirectX::SimpleMath;
@@ -43,9 +59,17 @@ void RectTransform::Update()
     m_world = S * R * T;
 }
 
+void RectTransform::LateUpdate()
+{
+}
+
 void RectTransform::Render()
 {
     // RectTransform does not render anything by itself.
+}
+
+void RectTransform::PostRender()
+{
 }
 
 void RectTransform::GUI()

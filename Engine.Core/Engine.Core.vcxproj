@@ -169,6 +169,7 @@
     <ClCompile Include="src\Core\FileSystem.cpp" />
     <ClCompile Include="src\Core\Platform.cpp" />
     <ClCompile Include="src\Core\Time.cpp" />
+    <ClCompile Include="src\Debug\NEGUI.cpp" />
     <ClCompile Include="src\Input\Keyboard.cpp" />
     <ClCompile Include="src\Input\Mouse.cpp" />
   </ItemGroup>
@@ -179,6 +180,7 @@
     <ClInclude Include="include\Core\FileSystem.h" />
     <ClInclude Include="include\Core\Platform.h" />
     <ClInclude Include="include\Core\Time.h" />
+    <ClInclude Include="include\Debug\NEGUI.h" />
     <ClInclude Include="include\Input\Keyboard.h" />
     <ClInclude Include="include\Input\Mouse.h" />
     <ClInclude Include="include\Screen.h" />

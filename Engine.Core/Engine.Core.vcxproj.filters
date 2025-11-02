@@ -16,6 +16,7 @@
     <ClCompile Include="src\Input\Mouse.cpp">
       <Filter>src\Input</Filter>
     </ClCompile>
+    <ClCompile Include="src\Debug\NEGUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Common.h">
@@ -44,6 +45,7 @@
     </ClInclude>
     <ClInclude Include="include\Screen.h" />
     <ClInclude Include="include\UI.h" />
+    <ClInclude Include="include\Debug\NEGUI.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">

@@ -11,6 +11,22 @@ using namespace Common;
 using namespace Screen;
 using namespace UI;
 
+void Transform::Awake()
+{
+}
+
+void Transform::Start()
+{
+}
+
+void Transform::Destroy()
+{
+}
+
+void Transform::FixedUpdate()
+{
+}
+
 void Transform::Update()
 {
     // S, R, T 행렬 계산
@@ -21,10 +37,18 @@ void Transform::Update()
     m_world = S * R * T;
 }
 
+void Transform::LateUpdate()
+{
+}
+
 void Transform::Render()
 {
     // Transform은 시각적으로 그릴 요소가 없으므로 보통 비웁니다.
     // (필요 시, 디버그용 기즈모 등으로 확장 가능)
+}
+
+void Transform::PostRender()
+{
 }
 
 void Transform::GUI()

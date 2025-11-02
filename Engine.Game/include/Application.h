@@ -5,6 +5,7 @@
 #include "Input/Keyboard.h"
 #include "Input/Mouse.h"
 #include "Managers/SceneManager/SceneManager.h"
+#include "Debug/NEGUI.h"
 
 namespace NG_Engine
 {
@@ -67,6 +68,7 @@ namespace NG_Engine
         Time         m_time;
         Keyboard     m_keyboard;
         Mouse        m_mouse;
+        NEGUI        m_gui;
 
         Graphics::IGraphicsEngine& m_graphics;
         bool         bRunning = false;
