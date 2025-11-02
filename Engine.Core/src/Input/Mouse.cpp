@@ -1,4 +1,5 @@
 #include "Input/Mouse.h"
+#include "ConstantVector.h"
 
 #include <Windows.h>
 #include <windowsx.h>
@@ -6,6 +7,7 @@
 #include <imgui.h>
 
 using namespace NG_Engine;
+using namespace ConstantVector;
 using DirectX::SimpleMath::Vector3;
 
 namespace
@@ -34,9 +36,9 @@ void Mouse::Init(HWND handle)
     m_previousButtonState.fill(0);
     m_buttonTransitions.fill(ButtonTransition::None);
 
-    m_wheelPosition = Vector3::Zero;
-    m_previousWheelPosition = Vector3::Zero;
-    m_wheelDelta = Vector3::Zero;
+    m_wheelPosition = ZeroVector3;
+    m_previousWheelPosition = ZeroVector3;
+    m_wheelDelta = ZeroVector3;
 
     m_doubleClickTime = ::GetDoubleClickTime();
     const DWORD now = ::GetTickCount64();
@@ -53,7 +55,7 @@ void Mouse::Update()
 {
     m_previousButtonState = m_buttonState;
     m_previousWheelPosition = m_wheelPosition;
-    m_wheelDelta = Vector3::Zero;
+    m_wheelDelta = ZeroVector3;
 
     ImGuiIO& io = GetImGuiIO();
     if (io.WantCaptureMouse)
@@ -66,8 +68,8 @@ void Mouse::Update()
             m_buttonTransitions[button] = previous != 0 ? ButtonTransition::Up : ButtonTransition::None;
         }
 
-        m_mousePosition = Vector3::Zero;
-        m_wheelPosition = Vector3::Zero;
+        m_mousePosition = ZeroVector3;
+        m_wheelPosition = ZeroVector3;
         return;
     }
 

@@ -7,6 +7,7 @@
 #include <cstdint>
 
 #include <directxtk/SimpleMath.h>
+#include "ConstantVector.h"
 
 namespace NG_Engine
 {
@@ -47,15 +48,15 @@ namespace NG_Engine
 		void UpdateDoubleClickState(std::size_t index, ButtonTransition& transition);
 
 		HWND m_windowHandle = nullptr;
-		DirectX::SimpleMath::Vector3 m_mousePosition = DirectX::SimpleMath::Vector3::Zero;
+		DirectX::SimpleMath::Vector3 m_mousePosition = ConstantVector::ZeroVector3;
 
 		std::array<std::uint8_t, MaxButtonCount> m_buttonState{};
 		std::array<std::uint8_t, MaxButtonCount> m_previousButtonState{};
 		std::array<ButtonTransition, MaxButtonCount> m_buttonTransitions{};
 
-		DirectX::SimpleMath::Vector3 m_wheelPosition = DirectX::SimpleMath::Vector3::Zero;
-		DirectX::SimpleMath::Vector3 m_previousWheelPosition = DirectX::SimpleMath::Vector3::Zero;
-		DirectX::SimpleMath::Vector3 m_wheelDelta = DirectX::SimpleMath::Vector3::Zero;
+		DirectX::SimpleMath::Vector3 m_wheelPosition = ConstantVector::ZeroVector3;
+		DirectX::SimpleMath::Vector3 m_previousWheelPosition = ConstantVector::ZeroVector3;
+		DirectX::SimpleMath::Vector3 m_wheelDelta = ConstantVector::ZeroVector3;
 
 		DWORD m_doubleClickTime = 0;
 		std::array<DWORD, MaxButtonCount> m_buttonClickStart{};

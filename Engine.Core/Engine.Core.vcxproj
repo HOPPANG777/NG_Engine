@@ -175,6 +175,7 @@
   <ItemGroup>
     <ClInclude Include="include\ConstantColor.h" />
     <ClInclude Include="include\Common.h" />
+    <ClInclude Include="include\ConstantVector.h" />
     <ClInclude Include="include\Core\FileSystem.h" />
     <ClInclude Include="include\Core\Platform.h" />
     <ClInclude Include="include\Core\Time.h" />
