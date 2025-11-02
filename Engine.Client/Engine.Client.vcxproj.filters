@@ -21,7 +21,7 @@
     <ClInclude Include="include\targetver.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Engine.Client.h">
+    <ClInclude Include="include\main.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\resource.h">
@@ -29,7 +29,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Engine.Client.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
