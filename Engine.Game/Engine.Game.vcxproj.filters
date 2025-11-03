@@ -52,11 +52,21 @@
     <ClCompile Include="src\Renderer\2D\SpriteBatch2D.cpp">
       <Filter>src\Renderer\2D</Filter>
     </ClCompile>
-    <ClCompile Include="src\ECS\Components\Component.cpp" />
-    <ClCompile Include="src\ECS\Components\Transform.cpp" />
-    <ClCompile Include="src\ECS\Components\RectTransform.cpp" />
-    <ClCompile Include="src\ECS\Objects\Object.cpp" />
-    <ClCompile Include="src\Managers\SceneManager\SceneManager.cpp" />
+    <ClCompile Include="src\ECS\Components\Component.cpp">
+      <Filter>src\ECS\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ECS\Objects\Object.cpp">
+      <Filter>src\ECS\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ECS\Components\RectTransform.cpp">
+      <Filter>src\ECS\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ECS\Components\Transform.cpp">
+      <Filter>src\ECS\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Managers\SceneManager\SceneManager.cpp">
+      <Filter>src\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Application.h">
@@ -110,12 +120,24 @@
     <ClInclude Include="include\Renderer\2D\SpriteBatch2D.h">
       <Filter>include\Renderer\2D</Filter>
     </ClInclude>
-    <ClInclude Include="include\ECS\Components\Component.h" />
-    <ClInclude Include="include\ECS\Objects\Object.h" />
-    <ClInclude Include="include\ECS\Components\Transform.h" />
-    <ClInclude Include="include\ECS\Components\RectTransform.h" />
-    <ClInclude Include="include\Interfaces\IScene.h" />
-    <ClInclude Include="include\Managers\SceneManager\SceneManager.h" />
+    <ClInclude Include="include\Interfaces\IScene.h">
+      <Filter>include\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ECS\Components\Component.h">
+      <Filter>include\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ECS\Objects\Object.h">
+      <Filter>include\ECS\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ECS\Components\RectTransform.h">
+      <Filter>include\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ECS\Components\Transform.h">
+      <Filter>include\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Managers\SceneManager\SceneManager.h">
+      <Filter>include\Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -160,8 +182,37 @@
     <Filter Include="src\Renderer\RenderResources">
       <UniqueIdentifier>{ae76114f-78ea-472c-b48e-4dd6b653bde4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\ECS">
+      <UniqueIdentifier>{48559ac0-0020-4736-b50b-4c18a8d57317}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ECS">
+      <UniqueIdentifier>{6bf04e29-9c62-4774-8476-cedb62740057}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Interfaces">
+      <UniqueIdentifier>{48ff4396-1a7d-405e-bbdb-4218b3132634}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\ECS\Components">
+      <UniqueIdentifier>{bfa26bf0-cd01-423e-9790-fcf2160bfc77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ECS\Components">
+      <UniqueIdentifier>{cd697e9a-38ef-43da-9867-fcc62466c063}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ECS\Objects">
+      <UniqueIdentifier>{cef608c9-23fd-4fa5-aa30-281486771807}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\ECS\Objects">
+      <UniqueIdentifier>{2a9a0dba-c377-4406-9264-ed5fbe1dc38e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Managers">
+      <UniqueIdentifier>{19f6c51b-5675-4a82-99d2-8b3561c81abc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Managers">
+      <UniqueIdentifier>{2906d421-6e9d-4195-929b-4967527208c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="include\ECS\Objects\Object.inl" />
+    <None Include="include\ECS\Objects\Object.inl">
+      <Filter>include\ECS\Objects</Filter>
+    </None>
   </ItemGroup>
 </Project>
