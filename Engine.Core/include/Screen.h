@@ -32,16 +32,15 @@ namespace Screen
 		bool bScreen = false;
 	};
 
-	//constexpr int WIN_DEFAULT_WIDTH = 1920;
-	//constexpr int WIN_DEFAULT_HEIGHT = 1080;
-
 	int g_WinWidth = GetSystemMetrics(SM_CXVIRTUALSCREEN);
 	int	g_WinHeight = GetSystemMetrics(SM_CYVIRTUALSCREEN);
 
-	static UINT GetWinWidth() { return static_cast<UINT>(g_WinWidth); }
-	static UINT GetWinHeight() { return static_cast<UINT>(g_WinHeight); };
-	static float GetCenterX() { return g_WinWidth * 0.5f; };
-	static float GetCenterY() { return g_WinHeight * 0.5f; };
-	static DirectX::SimpleMath::Vector3 GetCenter() { return DirectX::SimpleMath::Vector3(GetCenterX(), GetCenterY(), 0); };
-	static DirectX::SimpleMath::Vector3 GetScreenSize() { return DirectX::SimpleMath::Vector3(g_WinWidth, g_WinHeight, 1); };
+	float GetWinWidth() { return static_cast<float>(g_WinWidth); }
+	float GetWinHeight() { return static_cast<float>(g_WinHeight); };
+
+	float GetCenterX() { return static_cast<float>(g_WinWidth) * 0.5f; };
+	float GetCenterY() { return static_cast<float>(g_WinHeight) * 0.5f; };
+	
+	DirectX::SimpleMath::Vector3 GetCenter() { return DirectX::SimpleMath::Vector3(GetCenterX(), GetCenterY(), 0); };
+	DirectX::SimpleMath::Vector3 GetScreenSize() { return DirectX::SimpleMath::Vector3(GetWinWidth(), GetWinHeight(), 1); };
 }

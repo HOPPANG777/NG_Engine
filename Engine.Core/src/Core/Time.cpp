@@ -47,7 +47,7 @@ void Time::Update()
 #endif
 	}
 
-	m_scaledDeltaTime = float(m_deltaTime * m_timeScale);
+	m_scaledDeltaTime = m_deltaTime * m_timeScale;
 }
 
 void Time::CheckTime() const

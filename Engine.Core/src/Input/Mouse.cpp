@@ -41,7 +41,7 @@ void Mouse::Init(HWND handle)
     m_wheelDelta = ZeroVector3;
 
     m_doubleClickTime = ::GetDoubleClickTime();
-    const DWORD now = ::GetTickCount64();
+    const DWORD now = static_cast<DWORD>(::GetTickCount64());
     m_buttonClickStart.fill(now);
     m_buttonClickCount.fill(0);
 }
@@ -213,7 +213,7 @@ bool Mouse::DoubleClick(DWORD button) const
 
 void Mouse::UpdateDoubleClickState(std::size_t index, ButtonTransition& transition)
 {
-    const DWORD now = ::GetTickCount64();
+    const DWORD now = static_cast<DWORD>(::GetTickCount64());
 
     if (transition == ButtonTransition::Down)
     {

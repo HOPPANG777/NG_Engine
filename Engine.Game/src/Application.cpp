@@ -66,7 +66,7 @@ int Application::Run()
             break;
         }
 
-        float dt = m_time.Tick();
+        double dt = m_time.Tick();
 
         UpdateInputDevices();
 
@@ -183,7 +183,7 @@ void Application::UpdateInputDevices()
     m_mouse.Update();
 }
 
-void Application::SetFixedTimeStep(float fixedDt)
+void Application::SetFixedTimeStep(double fixedDt)
 {
     if (fixedDt <= 0.0f)
     {

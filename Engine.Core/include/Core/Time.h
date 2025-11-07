@@ -16,16 +16,16 @@ namespace NG_Engine
 	public:
 		void Update();
 
-		float GetRealDeltaTime() const { return float(m_deltaTime); }
-		float GetDeltaTime() const { return float(m_scaledDeltaTime); }
+		double GetRealDeltaTime() const { return m_deltaTime; }
+		double GetDeltaTime() const { return m_scaledDeltaTime; }
 
 	public:
 		UINT GetFPS() const { return m_fps; }
 		double GetWorldTime() const { return m_worldTime; }
 
 	public:
-		void SetTimeScale(float scale) { m_timeScale = scale; }
-		float GetTimeScale() const { return m_timeScale; }
+		void SetTimeScale(double scale) { m_timeScale = scale; }
+		double GetTimeScale() const { return m_timeScale; }
 
 		void CheckTime() const;
 
@@ -33,7 +33,7 @@ namespace NG_Engine
 		void Reset();
 
 		// 추가: Application 루프 호환용(바로 dt 반환)
-		float Tick() { Update(); return GetDeltaTime(); }
+		double Tick() { Update(); return GetDeltaTime(); }
 
 	public:
 		// UTC 시간 반환
@@ -67,8 +67,8 @@ namespace NG_Engine
 		double m_fpsTimeElapsed = 0.0;
 
 	private:
-		float m_scaleDeltaTime = 0.0f;
-		float m_timeScale = 1.0f;		// 타임스케일
+		double m_timeScale = 1.0f;		// 타임스케일
+	
 	};
 } // namespace NG_Engine
 

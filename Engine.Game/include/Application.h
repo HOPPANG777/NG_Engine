@@ -37,9 +37,9 @@ namespace NG_Engine
 
     protected: // hooks
         virtual void OnInit() {}
-        virtual void OnFixedUpdate(float fixedDt) {}
-        virtual void OnUpdate(float dt) = 0;
-        virtual void OnLateUpdate(float dt) {}
+        virtual void OnFixedUpdate(double fixedDt) {}
+        virtual void OnUpdate(double dt) = 0;
+        virtual void OnLateUpdate(double dt) {}
         virtual void OnRender() = 0;
         virtual void OnPostRender() {}
         virtual void OnGUI() {}
@@ -55,8 +55,8 @@ namespace NG_Engine
     protected:
         SceneManager& GetSceneManager() { return g_sceneManager; }
         const SceneManager& GetSceneManager() const { return g_sceneManager; }
-        void SetFixedTimeStep(float fixedDt);
-        float GetFixedTimeStep() const { return g_fixedTimeStep; }
+        void SetFixedTimeStep(double fixedDt);
+        double GetFixedTimeStep() const { return g_fixedTimeStep; }
 
     protected:
         void BeginFrame(const float clear[4]);
@@ -74,7 +74,7 @@ namespace NG_Engine
         bool         bRunning = false;
         bool         bGraphicsInitialized = false;
         SceneManager g_sceneManager;
-        float        g_fixedTimeStep = 1.0f / 60.0f;
-        float        g_fixedAccumulator = 0.0f;
+        double        g_fixedTimeStep = 1.0f / 60.0f;
+        double        g_fixedAccumulator = 0.0f;
     };
 } // namespace NG_Engine

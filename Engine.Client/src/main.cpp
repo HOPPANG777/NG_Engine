@@ -52,7 +52,7 @@ void EngineClient::OnInit()
 	OutputDebugStringW(debugMessage.c_str());
 }
 
-void EngineClient::OnUpdate(float dt)
+void EngineClient::OnUpdate(double dt)
 {
 	m_titleTimer += dt;
 	if (m_titleTimer < 0.25f)

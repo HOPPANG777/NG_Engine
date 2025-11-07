@@ -12,7 +12,7 @@ public:
 
 protected:
 	void OnInit() override;
-	void OnUpdate(float dt) override;
+	void OnUpdate(double dt) override;
 	void OnRender() override;
 	void OnShutdown() override;
 	bool OnMsg(HWND handle, UINT message, WPARAM wParam, LPARAM lParam) override;
@@ -20,7 +20,7 @@ protected:
 private:
 	std::wstring m_baseTitle;
 	std::wstring m_presentedTitle;
-	float m_titleTimer = 0.0f;
+	double m_titleTimer = 0.0f;
 	std::uint32_t m_lastPresentedFps = 0;
 
 };
